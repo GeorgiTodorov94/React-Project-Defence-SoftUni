@@ -44,6 +44,8 @@ export default function HomePage() {
                             </div>
                         </div>
 
+                        {/* <!-- Display paragraph: If there is no games  --> */}
+                        {/* <p class="no-articles">No recipes yet</p> */}
                     </div>
                 </div>
             </div>

@@ -35,6 +35,10 @@
 
 }
 
+.recipe-form {
+    display: grid
+}
+
 .select-option-recipe {
     height: 43px;
     padding: 2px;
