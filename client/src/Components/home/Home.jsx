@@ -1,25 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import '../../static/CSS/homepage.css';
 import Monkey from '../../static/graphics/Monkey.wav'
 import React from 'react'
 import Header from '../header/Header';
+import { recipesAPI } from '../../api/recipes-Api';
 
-
-// layout {
-//     display: flex;
-//     width: 100vw;
-//     height: 100vh;
-//     overflow: hidden;
-// }
-
-// .layout-container {
-//     padding: 2rem;
-//     width: 100%;
-//     overflow: auto;
-// }
 export default function HomePage() {
     const monkey = new Audio(Monkey);
+    const [latest, setLatestRecipes] = useState([])
 
+    useEffect(() => {
+        (async () => {
+            const result = await recipesAPI.fetchAllRecipes();
+            setLatestRecipes(result.reverse().slice(0, 3));
+        })()
+    }, [])
 
 
     return (
@@ -39,8 +34,8 @@ export default function HomePage() {
                         <div className="home-button-group" >
                             <img className="home-button-image" src={('./src/static/graphics/AddRecipe.png')} />
                             <p className="home-button-title" >Recipe <br />Name</p>
-                            <div class="data-buttons">
-                                <a href="#" class="btn details-btn">Details</a>
+                            <div className="data-buttons">
+                                <a href="#" className="btn details-btn">Details</a>
                             </div>
                         </div>
 

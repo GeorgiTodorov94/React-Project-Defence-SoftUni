@@ -1,63 +1,31 @@
-import { Link } from "react-router-dom"
 import '../../static/CSS/recipeList.css'
 import Header from '../header/Header'
 import { useEffect, useState } from "react"
 import * as request from "../../api/requester"
 import * as recipesAPI from "../../api/recipes-Api"
+import RecipeListItem from "./recipe-list-item/RecipeListItem"
 
 export default function RecipeList() {
     const [recipes, setRecipes] = useState([])
 
     useEffect(() => {
 
-        recipesAPI.fetchAllRecipes()
-            .then(result => setRecipes(result))
-
+        (async () => {
+            const result = await recipesAPI.fetchAllRecipes();
+            setRecipes(result)
+        })();
     }, [])
 
-
-
-
-    // useEffect(() => {
-    //     (async () => {
-    //         const recipeResult = await request.get('http://localhost:3030/jsonstore/recipes')
-
-    //         console.log(recipeResult);
-    //     })();
-    // }, []);
     return (
         <>
             <Header />
+            <h1 className="recipebook-title">All Recipes</h1>
             <section className="recipe-book-link-container">
-                <h1 className="recipebook-title">All Recipes</h1>
-                <div className="recipe-book-link-container">
-                    <div className="recipe-button-group">
-                        <img className="recipe-button-image" src="./images/avatar-1.jpg" />
-                        <h6>Action</h6>
-                        <h2>Cover Fire</h2>
-                        <Link to="#" className="details-button">Details</Link>
-                    </div>
 
-                </div>
-                <div className="recipe-book-link-container">
-                    <div className="recipe-button-group">
-                        <img className="recipe-button-image" src="./images/avatar-1.jpg" />
-                        <h6>Action</h6>
-                        <h2>Zombie lang</h2>
-                        <Link to="#" className="details-button">Details</Link>
-                    </div>
-
-                </div>
-                <div className="recipe-book-link-container">
-                    <div className="recipe-button-group">
-                        <img className="recipe-button-image" src="./images/avatar-1.jpg" />
-                        <h6>Action</h6>
-                        <h2>MineCraft</h2>
-                        <Link to="#" className="details-button">Details</Link>
-                    </div>
-                </div>
-
-                {/* <h3 className="no-articles">No articles yet</h3> */}
+                {recipes.length > 0
+                    ? recipes.map(recipe => <RecipeListItem key={recipe._id} {...recipe} />)
+                    : <h3 className="no-articles">No Recipes yet</h3> // to do here the css
+                }
             </section>
 
         </>)

@@ -1,4 +1,4 @@
-async function requester(url, method, data) {
+export default async function requester(method, url, data) {
 
     const options = {}
 
@@ -8,14 +8,14 @@ async function requester(url, method, data) {
 
     if (data) {
         options.headers = {
-            'Content-Type': "application/json"
+            'Content-Type': 'application/json'
         };
 
         options.body = JSON.stringify(data)
     }
 
     const response = await fetch(url, options)
-    const result = await response.json()
+    const result = response.json()
 
     return result;
 }

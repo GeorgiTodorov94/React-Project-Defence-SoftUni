@@ -1,4 +1,4 @@
-import '../../static/CSS/addRecipeForm.css'
+import '../../static/CSS/createRecipe.css'
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
@@ -9,9 +9,9 @@ import Header from '../header/Header'
 export default function CreateRecipe({ }) {
 
     const { recipeId } = useParams();
-    const [amount, setAmount] = useState('');
-    const [unit, setUnit] = useState('');
-    const [ingredient, setIngredient] = useState('');
+    // const [amount, setAmount] = useState('');
+    // const [unit, setUnit] = useState('');
+    // const [ingredient, setIngredient] = useState('');
     const [name, setName] = useState('');
     const [servings, setServings] = useState('');
     const [category, setCategory] = useState('');
@@ -20,19 +20,19 @@ export default function CreateRecipe({ }) {
     const [method, setMethod] = useState('');
     const [notes, setNotes] = useState('');
     const [recipe, setRecipe] = useState({});
-    const [ingredients, setIngredients] = useState({});
+    // const [ingredients, setIngredients] = useState({});
     const [error, setError] = useState('')
     const [id, setId] = useState('')
 
-    const recipeURL = `http://localhost:3030/jsonstore/addrecipe`;
+    // const recipeURL = `http://localhost:3030/jsonstore/recipes`;
 
 
     const [values, setValues] = useState({
         _id: id,
-        amount,
-        unit,
-        ingredient,
-        ingredients,
+        // amount,
+        // unit,
+        // ingredient,
+        // ingredients,
         name,
         servings,
         category,
@@ -52,7 +52,8 @@ export default function CreateRecipe({ }) {
 
     const onSaveClickCreateRecipe = async (e) => {
         e.preventDefault()
-        const postRecipe = await axios.post(`http://localhost:3030/jsonstore/addrecipe/`, recipe)
+        console.log(recipe)
+        const postRecipe = await axios.post(`http://localhost:3030/jsonstore/recipes/`, recipe)
     }
 
 
@@ -60,25 +61,25 @@ export default function CreateRecipe({ }) {
     const onClickNewIngredientAddClickHandler = (e) => {
         e.preventDefault()
 
-        const newIngredient = {
-            amount: values.amount,
-            unit: values.unit,
-            ingredient: values.ingredient
-        }
+        // const newIngredient = {
+        //     amount: values.amount,
+        //     unit: values.unit,
+        //     ingredient: values.ingredient
+        // }
 
-        setIngredients(newIngredient);
-        recipe.ingredients = newIngredient;
+        // setIngredients(newIngredient);
+        // recipe.ingredients = newIngredient;
 
-        console.log(newIngredient)
-        console.log(recipe)
-        if (recipe._id) {
-            s
-            recipe.ingredients = {
-                ...recipe.ingredients,
-                ...newIngredient,
-            }
-            setIngredients(null)
-        }
+        // console.log(newIngredient)
+        // console.log(recipe)
+        // if (recipe._id) {
+        //     s
+        //     recipe.ingredients = {
+        //         ...recipe.ingredients,
+        //         ...newIngredient,
+        //     }
+        //     setIngredients(null)
+        // }
 
     };
 
@@ -90,14 +91,14 @@ export default function CreateRecipe({ }) {
     // console.log(allRecipes)
 
 
-    const AllIngredients = () => {
-        Object.values(ingredients).map(ingredient => {
-            console.log(ingredient)
-            return (
-                <p className="ingredient-text">{ingredient}</p>
-            )
-        })
-    };
+    // const AllIngredients = () => {
+    //     Object.values(ingredients).map(ingredient => {
+    //         console.log(ingredient)
+    //         return (
+    //             <p className="ingredient-text">{ingredient}</p>
+    //         )
+    //     })
+    // };
 
 
     return (
