@@ -1,64 +1,82 @@
-import { useEffect, useState, useRef } from "react"
 import '../../static/CSS/login.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import { useLogin } from "../../hooks/useAuth";
+const initialValues = { email: '', password: '' }
 
 export default function Login() {
 
-    const [user, setUser] = useState({});
+    const login = useLogin();
+    const navigate = useNavigate();
 
-    const [values, setValues] = useState({
-        _id: '',
-        username: '',
-        password: '',
-        rePassword: '',
-        email: '',
-    });
+    const loginHandler = async ({ email, password }) => {
 
+        try {
+            await login(email, password)
+            navigate('/')
 
-    const onChange = (e) => {
-        setValues(oldValues => ({ ...oldValues, [e.target.name]: e.target.value }));
+        } catch (error) {
+            console.log(error.message)
+        }
     }
+    const { changeHandler, submitHandler, values } = useForm(initialValues, loginHandler);
 
-    const onLoginClick = (e) => {
-        e.preventDefault()
-        const user = { ...values };
-        setUser(user)
-        console.log(user);
-    }
+
+    // const [user, setUser] = useState({});
+
+    // const [values, setValues] = useState({
+    //     _id: '',
+    //     username: '',
+    //     password: '',
+    //     rePassword: '',
+    //     email: '',
+    // });
+
+
+    // const onChange = (e) => {
+    // setValues(oldValues => ({ ...oldValues, [e.target.name]: e.target.value }));
+    // }
+
+    // const onLoginClick = (e) => {
+    // e.preventDefault()
+    // const user = { ...values };
+    // setUser(user)
+    // console.log(user);
+    // }
 
     return (
         <>
             <div className="container">
                 <div className="center">
                     <h1>Login</h1>
-                    <form action="POST" >
+                    <form onSubmit={submitHandler}>
 
                         <div className="form-login-password">
                             <div className="form-login-password">
-                                <label htmlFor="username"></label>
+                                <label htmlFor="email"></label>
                                 <input
                                     type="text"
-                                    name="username"
-                                    id="username"
-                                    placeholder="Username"
-                                    value={values.username}
-                                    onChange={onChange}
+                                    name="email"
+                                    id="email"
+                                    placeholder="Email"
+                                    value={values.email}
+                                    onChange={changeHandler}
 
                                 />
                             </div>
 
                             <div className="form-login-password">
-                                <label htmlFor=""></label>
+                                <label htmlFor="password"></label>
                                 <input
                                     type="text"
                                     name="password"
                                     id="password"
                                     placeholder="Password"
                                     value={values.password}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 />
                             </div>
-
+                            {/* 
                             <div className="form-login-password">
                                 <label htmlFor="rePassword"></label>
                                 <input
@@ -67,12 +85,12 @@ export default function Login() {
                                     placeholder="Repeat Password"
                                     id="rePassword"
                                     value={values.rePassword}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 />
-                            </div>
+                            </div> */}
 
 
-                            <input name="submit" type="submit" value="Login" onClick={onLoginClick} />
+                            <input name="submit" type="submit" value="Login"  /*onClick={onLoginClick} */ />
 
                             <div className="signUp_link">
                                 Not a Member ? <Link to={`/register`}>Sign-Up</Link>

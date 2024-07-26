@@ -1,6 +1,5 @@
 import * as request from './requester';
-import { useParams } from 'react-router-dom';
-const BASE_URL = 'http://localhost:3030/jsonstore/recipes'
+const BASE_URL = 'http://localhost:3030/data/recipes'
 
 export const fetchAllRecipes = async () => {
     const result = await request.get(BASE_URL);
@@ -12,7 +11,12 @@ export const fetchAllRecipes = async () => {
 
 export const getOne = (recipeId) => request.get(`${BASE_URL}/${recipeId}`);
 
-export const recipesAPI = {
+export const create = (recipeData) => request.post(`${BASE_URL}`, recipeData)
+
+const recipesAPI = {
     getOne,
-    fetchAllRecipes
-}
+    fetchAllRecipes,
+    create,
+};
+
+export default recipesAPI;

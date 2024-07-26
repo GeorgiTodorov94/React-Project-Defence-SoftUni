@@ -3,7 +3,7 @@ import '../../static/CSS/homepage.css';
 import Monkey from '../../static/graphics/Monkey.wav'
 import React from 'react'
 import Header from '../header/Header';
-import { recipesAPI } from '../../api/recipes-Api';
+import recipesAPI from '../../api/recipes-Api';
 
 export default function HomePage() {
     const monkey = new Audio(Monkey);

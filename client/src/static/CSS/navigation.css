@@ -9,12 +9,11 @@ body {
 
 .auth {
     width: 100px;
-    margin: 8em auto;
+    margin: 0 auto;
 }
 
 header,
 footer {
-    /* background-color: #29303c; */
     width: 100%;
     overflow: hidden;
     color: white;
@@ -34,7 +33,6 @@ header {
 
 header h1 {
     display: inline-block;
-    /* background-color: #29303c; */
     color: white;
     margin-bottom: auto;
 }
@@ -44,7 +42,7 @@ header nav {
     font-family: Georgia, 'Times New Roman', Times, serif;
     position: absolute;
     right: 0;
-    bottom: 8px;
+    bottom: 0;
 }
 
 header nav>* {

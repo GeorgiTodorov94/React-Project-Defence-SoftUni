@@ -1,35 +1,59 @@
 import { useEffect, useState, useRef } from "react"
-import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../../static/CSS/registerPage.css'
+import { useRegister } from "../../hooks/useAuth";
+import { useForm } from "../../hooks/useForm";
 
 
-
+const initialValues = { email: '', username: '', password: '', rePassword: '', };
 export default function RegisterPage() {
-    const baseURL = ('http://localhost:3030')
-    const [user, setUser] = useState({});
+    const [error, setError] = useState('')
+    const register = useRegister();
+    const navigate = useNavigate();
 
-    const [values, setValues] = useState({
-        _id: null,
-        username: '',
-        password: '',
-        rePassword: '',
-        email: '',
-    });
+    const registerHandler = async ({ email, username, password, rePassword }) => {
+
+        if (password !== rePassword) {
+            return setError('Password mismatch!');
+
+        }
+        try {
+            await register(email, username, password, rePassword);
+            navigate('/')
+        } catch (error) {
+            setError(error.message)
+        }
+    }
+    const { values,
+        changeHandler,
+        submitHandler
+    } = useForm(initialValues, registerHandler)
+
+
+    // const baseURL = ('http://localhost:3030')
+    // const [user, setUser] = useState({});
+
+    // const [values, setValues] = useState({
+    //     _id: null,
+    //     username: '',
+    //     password: '',
+    //     rePassword: '',
+    //     email: '',
+    // });
 
 
 
     const onChange = (e) => {
-        setValues(oldValues => ({ ...oldValues, [e.target.name]: e.target.value }));
+        // setValues(oldValues => ({ ...oldValues, [e.target.name]: e.target.value }));
 
     };
 
     const onRegisterClick = (e) => {
-        e.preventDefault()
-        const user = { ...values };
-        setUser(user);
-        console.log(user)
-        axios.post(`${baseURL}/jsonstore/users`, user);
+        // e.preventDefault()
+        // const user = { ...values };
+        // setUser(user);
+        // console.log(user)
+        // axios.post(`${baseURL}/jsonstore/users`, user);
     }
 
     return (
@@ -38,7 +62,7 @@ export default function RegisterPage() {
             <div className="container">
                 <div className="center">
                     <h1>Register</h1>
-                    <form action='POST' onSubmit={onRegisterClick}>
+                    <form onSubmit={submitHandler}>
 
                         <div className="form-register">
                             <div className="email">
@@ -49,7 +73,7 @@ export default function RegisterPage() {
                                     id="email"
                                     placeholder="Email"
                                     value={values.email}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 />
                             </div>
 
@@ -61,7 +85,7 @@ export default function RegisterPage() {
                                     id="username"
                                     placeholder="Username"
                                     value={values.username}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 />
                             </div>
 
@@ -73,7 +97,7 @@ export default function RegisterPage() {
                                     id="password"
                                     placeholder="Password"
                                     value={values.password}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 />
                             </div>
 
@@ -86,13 +110,19 @@ export default function RegisterPage() {
                                     id="rePassword"
                                     placeholder="Re-Password"
                                     value={values.rePassword}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 />
                             </div>
 
                             {/* <div className="forgot-password">
                         <Link to={'/'} className="forgot-password-register-form">Forgot Password?</Link>
                     </div> */}
+                            {error && (
+                                <p>
+                                    <span> {error}</span>
+                                </p>
+                            )}
+
 
                             <div className="signUp_link">
                                 <Link to={'/login'} >Already have an account?</Link>
@@ -103,7 +133,7 @@ export default function RegisterPage() {
                             </div>
 
                             <div className="signUp_link">
-                                <button type="submit" onClick={onRegisterClick}>Register</button>
+                                <button type="submit" >Register</button>
                             </div>
                         </div>
 

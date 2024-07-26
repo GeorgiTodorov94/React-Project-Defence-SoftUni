@@ -1,22 +1,13 @@
-import { useEffect, useState } from "react"
 import Header from "../header/Header"
-import { recipesAPI } from "../../api/recipes-Api"
 import { useParams } from "react-router-dom";
-import * as request from '../../api/requester'
+import { useGetOneRecipes } from "../../hooks/useRecipes";
 
 
 export default function RecipeDetails() {
-    const [recipe, setRecipe] = useState({});
     const { recipeId } = useParams();
+    const [recipe, setRecipe] = useGetOneRecipes(recipeId)
 
 
-    useEffect(() => {
-        (async () => {
-            const response = await recipesAPI.getOne(recipeId)
-
-            setRecipe(response)
-        })()
-    }, [])
 
     return (
         <>

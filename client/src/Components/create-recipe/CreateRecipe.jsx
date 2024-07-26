@@ -1,65 +1,87 @@
 import '../../static/CSS/createRecipe.css'
-import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import axios from "axios"
 import Header from '../header/Header'
+import { useForm } from '../../hooks/useForm'
+import { useRecipeCreate } from '../../hooks/useRecipes'
+
+const initialValues = {
+    name: '',
+    servings: '',
+    category: '',
+    dietary: '',
+    imageUrl: '',
+    method: '',
+    notes: '',
+}
+
+export default function CreateRecipe() {
+    const navigate = useNavigate()
+    const createRecipe = useRecipeCreate();
+
+    const createHandler = async (values) => {
+        try {
+            const { _id: recipeId } = await createRecipe(values)
+            navigate(`/recipes/${recipeId}/details`)
+        } catch (error) {
+            console.log(error.message)
+        }
 
 
+    }
 
-export default function CreateRecipe({ }) {
-
-    const { recipeId } = useParams();
+    const { changeHandler, values, submitHandler } = useForm(initialValues, createHandler)
+    // const { recipeId } = useParams();
     // const [amount, setAmount] = useState('');
     // const [unit, setUnit] = useState('');
     // const [ingredient, setIngredient] = useState('');
-    const [name, setName] = useState('');
-    const [servings, setServings] = useState('');
-    const [category, setCategory] = useState('');
-    const [dietary, setDietary] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-    const [method, setMethod] = useState('');
-    const [notes, setNotes] = useState('');
-    const [recipe, setRecipe] = useState({});
+    // const [name, setName] = useState('');
+    // const [servings, setServings] = useState('');
+    // const [category, setCategory] = useState('');
+    // const [dietary, setDietary] = useState('');
+    // const [imageUrl, setImageUrl] = useState('');
+    // const [method, setMethod] = useState('');
+    // const [notes, setNotes] = useState('');
+    // const [recipe, setRecipe] = useState({});
     // const [ingredients, setIngredients] = useState({});
-    const [error, setError] = useState('')
-    const [id, setId] = useState('')
+    // const [error, setError] = useState('')
+    // const [id, setId] = useState('')
 
     // const recipeURL = `http://localhost:3030/jsonstore/recipes`;
 
 
-    const [values, setValues] = useState({
-        _id: id,
-        // amount,
-        // unit,
-        // ingredient,
-        // ingredients,
-        name,
-        servings,
-        category,
-        dietary,
-        imageUrl,
-        method,
-        notes
-    });
+    // const [values, setValues] = useState({
+    //     _id: id,
+    //     // amount,
+    //     // unit,
+    //     // ingredient,
+    //     // ingredients,
+    //     name,
+    //     servings,
+    //     category,
+    //     dietary,
+    //     imageUrl,
+    //     method,
+    //     notes
+    // });
 
     const onChange = (e) => {
-        e.preventDefault();
-        setValues(oldValues => ({ ...values, [e.target.name]: e.target.value }))
-        console.log(values)
-        setRecipe(values)
+        //     e.preventDefault();
+        //     setValues(oldValues => ({ ...values, [e.target.name]: e.target.value }))
+        //     console.log(values)
+        //     setRecipe(values)
     }
 
 
     const onSaveClickCreateRecipe = async (e) => {
-        e.preventDefault()
-        console.log(recipe)
-        const postRecipe = await axios.post(`http://localhost:3030/jsonstore/recipes/`, recipe)
+        // e.preventDefault()
+        // console.log(recipe)
+        // const postRecipe = await axios.post(`http://localhost:3030/jsonstore/recipes/`, recipe)
     }
 
 
 
     const onClickNewIngredientAddClickHandler = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
 
         // const newIngredient = {
         //     amount: values.amount,
@@ -162,7 +184,7 @@ export default function CreateRecipe({ }) {
 
                         </form> */}
 
-                        <form className="recipe-form" method="post" id="recipe-form" onSubmit={onSaveClickCreateRecipe} >
+                        <form className="recipe-form" method="post" id="recipe-form" onSubmit={submitHandler} >
                             <label htmlFor="name">Name:</label>
                             <input
                                 className="input-add-recipe"
@@ -170,7 +192,7 @@ export default function CreateRecipe({ }) {
                                 id="name"
                                 name='name'
                                 value={values.name}
-                                onChange={onChange}
+                                onChange={changeHandler}
                                 required
                             />
                             <label htmlFor="servings">Servings:</label>
@@ -180,7 +202,7 @@ export default function CreateRecipe({ }) {
                                 id="servings"
                                 name='servings'
                                 value={values.servings}
-                                onChange={onChange}
+                                onChange={changeHandler}
                             />
                             <label htmlFor="category">Category:</label>
                             <div>
@@ -190,9 +212,9 @@ export default function CreateRecipe({ }) {
                                     id="category"
                                     name="category"
                                     value={values.category}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 >
-                                    <option value="empty"></option>
+                                    <option value={undefined}></option>
                                     <option value="breakfast">breakfast</option>
                                     <option value="dinner">dinner</option>
                                     <option value="lunch">lunch</option>
@@ -208,9 +230,9 @@ export default function CreateRecipe({ }) {
                                     id="dietary"
                                     name="dietary"
                                     value={values.dietary}
-                                    onChange={onChange}
+                                    onChange={changeHandler}
                                 >
-                                    <option value="empty"></option>
+                                    <option value={undefined}></option>
                                     <option value="dairy-free">dairy-free</option>
                                     <option value="gluten-free">gluten-free</option>
                                     <option value="protein">protein</option>
@@ -223,7 +245,7 @@ export default function CreateRecipe({ }) {
                                 className="input-add-recipe-imageUrl"
                                 type="text"
                                 value={values.imageUrl}
-                                onChange={onChange}
+                                onChange={changeHandler}
                                 id="image"
                                 name='imageUrl'
                             />
@@ -235,7 +257,7 @@ export default function CreateRecipe({ }) {
                                 id="method"
                                 name="method"
                                 value={values.method}
-                                onChange={onChange}
+                                onChange={changeHandler}
                             />
                             <label htmlFor="notes">Notes:</label>
                             <textarea
@@ -244,7 +266,7 @@ export default function CreateRecipe({ }) {
                                 rows="10"
                                 id="notes"
                                 name="notes"
-                                onChange={onChange}
+                                onChange={changeHandler}
                                 value={values.notes}
                             />
                             <div className="save" colSpan="2"></div>
