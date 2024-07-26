@@ -1,15 +1,18 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
+
+import { AuthContext } from './contexts/AuthContext'
+
+import './App.css'
+
 import HomePage from './Components/home/Home'
 import CreateRecipe from './Components/create-recipe/CreateRecipe'
-import Header from './Components/header/Header'
+import Navigation from './Components/navigation/Navigation'
 import Login from './Components/login/LoginPage'
 import RegisterPage from './Components/register/RegisterPage'
 import RecipeDetails from './Components/recipe-details/RecipeDetails'
 import RecipeEdit from './Components/recipe-edit/RecipeEdit'
 import RecipeList from './Components/recipe-list/RecipeList'
-import { AuthContext } from './contexts/AuthContext'
-import './App.css'
 
 function App() {
     const [authState, setAuthState] = useState({});
@@ -31,6 +34,7 @@ function App() {
     return (
         <AuthContext.Provider value={contextData}>
             <div className='layout'>
+                <Navigation />
                 <main className='layout-container'>
                     <Routes>
                         <Route path='/' element={<HomePage />} />

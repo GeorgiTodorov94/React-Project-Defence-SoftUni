@@ -1,4 +1,4 @@
-import Header from "../header/Header"
+import Header from "../navigation/Navigation"
 import { useParams } from "react-router-dom";
 import { useGetOneRecipes } from "../../hooks/useRecipes";
 
@@ -8,16 +8,14 @@ export default function RecipeDetails() {
     const [recipe, setRecipe] = useGetOneRecipes(recipeId)
 
 
-
     return (
         <>
-            <Header />
-            <section id="game-details">
+            <section id="recipe-details">
                 <h1>Recipe Details</h1>
                 <div className="info-section">
 
-                    <div className="game-header">
-                        <img className="game-img" src={recipe.imageUrl} />
+                    <div className="recipe-header">
+                        <img className="recipe-img" src={recipe.imageUrl} />
                         <h1>{recipe.name}</h1>
                         <span className="levels">{recipe.category}</span>
                         <p className="type">{recipe.servings}</p>
@@ -34,7 +32,7 @@ export default function RecipeDetails() {
                                 <p>Content: I rate this one quite highly.</p>
                             </li>
                             <li className="comment">
-                                <p>Content: The best game.</p>
+                                <p>Content: The best recipe.</p>
                             </li>
                         </ul>
                         <p className="no-comment">No comments.</p>

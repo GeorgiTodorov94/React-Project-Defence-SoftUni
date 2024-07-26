@@ -15,14 +15,12 @@ export default function RecipeListItem({
             <div className="link-container">
                 <div className="home-button-group" >
                     <img className="home-button-image" src={imageUrl} />
-                    <p className="home-button-title" >Recipe <br />{name}</p>
+                    <p className="home-button-title" ><br />{name}</p>
                     <div className="data-buttons">
                         <Link to={`/recipes/${_id}/details`} className="btn details-btn">Details</Link>
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }

@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react';
 import '../../static/CSS/homepage.css';
 import Monkey from '../../static/graphics/Monkey.wav'
 import React from 'react'
-import Header from '../header/Header';
 import recipesAPI from '../../api/recipes-Api';
+import { useNavigate } from 'react-router-dom';
+import logo from '../../static/graphics/MonkeyChefLogo.png'
+import addRecipe from '../../static/graphics/AddRecipe.png'
+import RecipeBook from '../../static/graphics/RecipeBook.png'
+import WeeklyPlanner from '../../static/graphics/WeeklyPlanner.png'
+import ShoppingList from '../../static/graphics/ShoppingList.png'
 
 export default function HomePage() {
     const monkey = new Audio(Monkey);
-    const [latest, setLatestRecipes] = useState([])
 
     useEffect(() => {
         (async () => {
@@ -15,36 +19,44 @@ export default function HomePage() {
             setLatestRecipes(result.reverse().slice(0, 3));
         })()
     }, [])
+    const navigate = useNavigate();
+
+    const handleClick = (url) => {
+        navigate(url);
+        monkey.play()
+    }
 
 
     return (
         <>
-            <Header />
-            <div className='layout'>
-
-                <div className='layout-container'>
-                    <div className="homepage-banner">
-                        <img className="banner-image" src={('./src/static/graphics/MonkeyChefLogo-Small.png')} />
-                        <div className="banner-message">
-                            Welcome to Meal Planner Application
-                        </div>
-                    </div>
-
-                    <div className="link-container">
-                        <div className="home-button-group" >
-                            <img className="home-button-image" src={('./src/static/graphics/AddRecipe.png')} />
-                            <p className="home-button-title" >Recipe <br />Name</p>
-                            <div className="data-buttons">
-                                <a href="#" className="btn details-btn">Details</a>
-                            </div>
-                        </div>
-
-                        {/* <!-- Display paragraph: If there is no games  --> */}
-                        {/* <p class="no-articles">No recipes yet</p> */}
-                    </div>
+            <div className="homepage-banner">
+                <img className="banner-image" src={logo} />
+                <div className="banner-message">
+                    Welcome to Your Meal Planner Application
                 </div>
             </div>
 
+            <div className="link-container">
+                <div className="home-button-group" onClick={() => handleClick("/create")}>
+                    <img className="home-button-image" src={addRecipe} />
+                    <p className="home-button-title" >Add <br />Recipe</p>
+                </div>
+
+                <div className="home-button-group" onClick={() => handleClick("/recipes")}>
+                    <img className="home-button-image" src={RecipeBook} />
+                    <p className="home-button-title" >Recipe <br />Book</p>
+                </div>
+
+                <div className="home-button-group" onClick={() => handleClick("/planner")}>
+                    <img className="home-button-image" src={WeeklyPlanner} />
+                    <p className="home-button-title" >Weekly <br />Planner</p>
+                </div>
+
+                <div className="home-button-group" onClick={() => handleClick("/shoppingList")}>
+                    <img className="home-button-image" src={ShoppingList} />
+                    <p className="home-button-title" >Shopping <br />List</p>
+                </div>
+            </div>
         </>
     )
 }

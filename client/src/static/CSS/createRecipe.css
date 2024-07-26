@@ -1,26 +1,7 @@
 .add-recipe-title {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    font-size: 2em;
+    font-size: 3rem;
     margin-top: 0;
-}
-
-.layout {
-    background-image: url('../graphics/MonkeyChefLogoBG.png');
-    background-repeat: no-repeat;
-    background-position: 35%;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.layout-container {
-    padding: 2rem;
-    width: 100%;
-    overflow: auto;
+    margin-left: 9em;
 }
 
 .ingredient-text {
@@ -29,14 +10,15 @@
 }
 
 .add-recipe-form-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: center;
-
+    margin-right: 20rem;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .recipe-form {
-    display: grid
+    display: grid;
+    justify-items: center;
 }
 
 .select-option-recipe {
@@ -52,12 +34,15 @@
 }
 
 .input-add-recipe-imageUrl {
-    font-size: 15px;
-    width: 30.5rem;
+    padding: 10px;
+    padding-left: 1rem;
     border-radius: 20px;
     border: 1px solid grey;
-    height: 2.6rem;
-    padding-left: 1rem;
+    width: 272px;
+    height: 20px;
+    margin-right: 5px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #method {
@@ -85,14 +70,12 @@
 .input-add-recipe-ingredient {
     padding: 10px;
     border-radius: 20px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
     border: 1px solid grey;
-    width: 237px;
     height: 20px;
     margin-right: 0px;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 280px;
 }
 
 
@@ -117,7 +100,10 @@ textarea {
     color: white;
     padding: 0px;
     text-align: center;
+    margin-top: 1em;
 }
+
+
 
 .save input {
     border-radius: 20px;
@@ -147,7 +133,10 @@ label {
 }
 
 .ingredient-form {
-    padding-right: 80px;
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
 }
 
 

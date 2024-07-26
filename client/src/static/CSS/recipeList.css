@@ -22,18 +22,6 @@
   float: left;
 }
 
-.layout {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.layout-container {
-  padding: 2rem;
-  width: 100%;
-  overflow: auto;
-}
 
 #searchTerm {
 
@@ -59,6 +47,7 @@
 
 .recipebook-monkey {
   margin-right: 1rem;
+  width: 50px;
   margin-left: 1rem;
 }
 
@@ -181,7 +170,7 @@
 .recipe-button-image {
   margin-bottom: 1rem;
   padding: 2em;
-  
+
 }
 
 .banner-container {
@@ -255,6 +244,12 @@
   bottom: 0px;
   right: 0px;
   left: 150px;
+}
+
+.recipes-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5em 5em 5em 5em;
 }
 
 .recipe-book-link-container {

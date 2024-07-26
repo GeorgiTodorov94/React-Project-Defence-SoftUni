@@ -1,18 +1,20 @@
 import '../../static/CSS/createRecipe.css'
 import { useNavigate, useParams } from "react-router-dom"
-import Header from '../header/Header'
 import { useForm } from '../../hooks/useForm'
 import { useRecipeCreate } from '../../hooks/useRecipes'
+import { useEffect, useState } from 'react'
 
 const initialValues = {
     name: '',
     servings: '',
     category: '',
     dietary: '',
+    ingredients: [],
     imageUrl: '',
     method: '',
     notes: '',
 }
+
 
 export default function CreateRecipe() {
     const navigate = useNavigate()
@@ -20,7 +22,7 @@ export default function CreateRecipe() {
 
     const createHandler = async (values) => {
         try {
-            const { _id: recipeId } = await createRecipe(values)
+            const { _id: recipeId, ...recipe } = await createRecipe(values)
             navigate(`/recipes/${recipeId}/details`)
         } catch (error) {
             console.log(error.message)
@@ -29,103 +31,30 @@ export default function CreateRecipe() {
 
     }
 
+
     const { changeHandler, values, submitHandler } = useForm(initialValues, createHandler)
-    // const { recipeId } = useParams();
-    // const [amount, setAmount] = useState('');
-    // const [unit, setUnit] = useState('');
-    // const [ingredient, setIngredient] = useState('');
-    // const [name, setName] = useState('');
-    // const [servings, setServings] = useState('');
-    // const [category, setCategory] = useState('');
-    // const [dietary, setDietary] = useState('');
-    // const [imageUrl, setImageUrl] = useState('');
-    // const [method, setMethod] = useState('');
-    // const [notes, setNotes] = useState('');
-    // const [recipe, setRecipe] = useState({});
-    // const [ingredients, setIngredients] = useState({});
-    // const [error, setError] = useState('')
-    // const [id, setId] = useState('')
-
-    // const recipeURL = `http://localhost:3030/jsonstore/recipes`;
-
-
-    // const [values, setValues] = useState({
-    //     _id: id,
-    //     // amount,
-    //     // unit,
-    //     // ingredient,
-    //     // ingredients,
-    //     name,
-    //     servings,
-    //     category,
-    //     dietary,
-    //     imageUrl,
-    //     method,
-    //     notes
-    // });
 
     const onChange = (e) => {
-        //     e.preventDefault();
-        //     setValues(oldValues => ({ ...values, [e.target.name]: e.target.value }))
-        //     console.log(values)
-        //     setRecipe(values)
+        e.preventDefault()
+        setFirstFormValues(firstFormValues => ({ ...firstFormValues, [e.target.name]: e.target.value }))
     }
+    const [ingredients, setIngredient] = useState([])
+    const [firstFormValues, setFirstFormValues] = useState([])
 
-
-    const onSaveClickCreateRecipe = async (e) => {
-        // e.preventDefault()
-        // console.log(recipe)
-        // const postRecipe = await axios.post(`http://localhost:3030/jsonstore/recipes/`, recipe)
-    }
-
-
-
-    const onClickNewIngredientAddClickHandler = (e) => {
-        // e.preventDefault()
-
-        // const newIngredient = {
-        //     amount: values.amount,
-        //     unit: values.unit,
-        //     ingredient: values.ingredient
-        // }
-
-        // setIngredients(newIngredient);
-        // recipe.ingredients = newIngredient;
-
-        // console.log(newIngredient)
-        // console.log(recipe)
-        // if (recipe._id) {
-        //     s
-        //     recipe.ingredients = {
-        //         ...recipe.ingredients,
-        //         ...newIngredient,
-        //     }
-        //     setIngredients(null)
-        // }
-
+    const onClickAddNewIngredientHandler = (e) => {
+        e.preventDefault()
+        // console.log(firstFormValues)
+        setIngredient([...ingredients, firstFormValues])
+        console.log(ingredients)
+        initialValues.ingredients[0].push(ingredients)
+        console.log(initialValues)
     };
 
-    // const onClickUpdateRecipeById = async (e) => {
 
-    // }
-
-    // const allRecipes = (Object.values(data)).map(object => object);
-    // console.log(allRecipes)
-
-
-    // const AllIngredients = () => {
-    //     Object.values(ingredients).map(ingredient => {
-    //         console.log(ingredient)
-    //         return (
-    //             <p className="ingredient-text">{ingredient}</p>
-    //         )
-    //     })
-    // };
 
 
     return (
         <>
-            <Header />
             <div className='layout'>
 
                 <div className='layout-container'>
@@ -135,7 +64,7 @@ export default function CreateRecipe() {
                     <div className="add-recipe-form-container">
 
 
-                        {/* <form className="ingredient-form" onSubmit={onClickNewIngredientAddClickHandler} id="ingredient-form" >
+                        <form className="ingredient-form" id="ingredient-form" onSubmit={onClickAddNewIngredientHandler}>
                             <label className="ingredients" htmlFor="ingredients">Ingredients:</label>
 
                             <label htmlFor="amount">Amount:</label>
@@ -179,10 +108,21 @@ export default function CreateRecipe() {
                                 value={values.ingredient}
                                 onChange={onChange}
                             />
-                            <a className="plus" colSpan="2"><input type="submit" value="+" id="save" border="0" onClick={onClickNewIngredientAddClickHandler} /></a>
-                            <AllIngredients />
+                            <a className="plus">
+                                <input type="submit" value="+" id="save" />
+                            </a>
 
-                        </form> */}
+                            {
+                                ingredients.map((item, index) => (
+                                    <p className="ingredient-text" key={index}>
+                                        {Object.entries(item).map(([key, value]) => (
+                                            `${key}: ${value} `
+                                        ))}
+                                    </p>
+                                ))
+                            }
+
+                        </form>
 
                         <form className="recipe-form" method="post" id="recipe-form" onSubmit={submitHandler} >
                             <label htmlFor="name">Name:</label>
