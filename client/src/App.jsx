@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
 
-import { AuthContext } from './contexts/AuthContext'
+import { AuthContextProvider } from './contexts/AuthContext'
 
 import './App.css'
 
@@ -13,26 +12,13 @@ import RegisterPage from './Components/register/RegisterPage'
 import RecipeDetails from './Components/recipe-details/RecipeDetails'
 import RecipeEdit from './Components/recipe-edit/RecipeEdit'
 import RecipeList from './Components/recipe-list/RecipeList'
+import Logout from './Components/logout/Logout'
 
 function App() {
-    const [authState, setAuthState] = useState({});
 
-    const changeAuthState = (state) => {
-        localStorage.setItem('accessToken', state.accessToken)
-
-        setAuthState(state)
-    }
-
-    const contextData = {
-        userId: authState._id,
-        email: authState.email,
-        accessToken: authState.accessToken,
-        isAuthenticated: !!authState.email,
-        changeAuthState,
-    }
 
     return (
-        <AuthContext.Provider value={contextData}>
+        <AuthContextProvider >
             <div className='layout'>
                 <Navigation />
                 <main className='layout-container'>
@@ -43,10 +29,11 @@ function App() {
                         <Route path='/create' element={<CreateRecipe />} />
                         <Route path='/recipes' element={<RecipeList />} />
                         <Route path='/recipes/:recipeId/details' element={<RecipeDetails />} />
+                        <Route path='/logout' element={<Logout />} />
                     </Routes>
                 </main>
             </div>
-        </AuthContext.Provider>
+        </AuthContextProvider>
     )
 }
 

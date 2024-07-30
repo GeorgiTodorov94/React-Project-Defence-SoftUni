@@ -33,6 +33,11 @@ const SidebarData =
             icon: homepage,
             cName: 'nav-text'
         },
+        {
+            onClick: (navigate) => navigate('/logout'),
+            icon: logo,
+            cName: 'nav-text'
+        }
     ]
 
 export default SidebarData;

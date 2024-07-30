@@ -45,8 +45,8 @@ export default function CreateRecipe() {
         e.preventDefault()
         // console.log(firstFormValues)
         setIngredient([...ingredients, firstFormValues])
-        console.log(ingredients)
-        initialValues.ingredients[0].push(ingredients)
+        // console.log(ingredients)
+        initialValues.ingredients.push(ingredients)
         console.log(initialValues)
     };
 

@@ -9,7 +9,8 @@ import { useState, useEffect } from 'react'
 
 
 export default function RecipeList() {
-    const [recipes, setRecipes] = useGetAllRecipes()
+    const [recipes, setRecipes] = useGetAllRecipes();
+
     return (
         <>
             <div>
