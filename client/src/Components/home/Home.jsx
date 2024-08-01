@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 import '../../static/CSS/homepage.css';
 import Monkey from '../../static/graphics/Monkey.wav'
 import React from 'react'
-import recipesAPI from '../../api/recipes-Api';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../static/graphics/MonkeyChefLogo.png'
 import addRecipe from '../../static/graphics/AddRecipe.png'
@@ -11,6 +11,7 @@ import WeeklyPlanner from '../../static/graphics/WeeklyPlanner.png'
 import ShoppingList from '../../static/graphics/ShoppingList.png'
 
 export default function HomePage() {
+    const { isAuthenticated } = useContext(AuthContext);
     const monkey = new Audio(Monkey);
 
 
@@ -42,16 +43,21 @@ export default function HomePage() {
                     <p className="home-button-title" >Recipe <br />Book</p>
                 </div>
 
-                <div className="home-button-group" onClick={() => handleClick("/planner")}>
-                    <img className="home-button-image" src={WeeklyPlanner} />
-                    <p className="home-button-title" >Weekly <br />Planner</p>
-                </div>
+                {isAuthenticated && (
+                    <div className='link-container'>
+                        <div className="home-button-group" onClick={() => handleClick("/planner")}>
+                            <img className="home-button-image" src={WeeklyPlanner} />
+                            <p className="home-button-title" >Weekly <br />Planner</p>
+                        </div>
 
-                <div className="home-button-group" onClick={() => handleClick("/shoppingList")}>
-                    <img className="home-button-image" src={ShoppingList} />
-                    <p className="home-button-title" >Shopping <br />List</p>
-                </div>
+                        <div className="home-button-group" onClick={() => handleClick("/shoppingList")}>
+                            <img className="home-button-image" src={ShoppingList} />
+                            <p className="home-button-title" >Shopping <br />List</p>
+                        </div>
+                    </div>
+                )}
             </div>
+
         </>
     )
 }

@@ -14,7 +14,7 @@ export default function RecipeList() {
     return (
         <>
             <div>
-                <h1 className="recipebook-title">Your Recipes</h1>
+                <h1 className="recipebook-title">All Recipes</h1>
                 <div className="recipebook-search-container">
                     <input className="recipe-search-bar" type="searchTerm" id="searchTerm" />
                     <button id="search-button" >Search</button>
