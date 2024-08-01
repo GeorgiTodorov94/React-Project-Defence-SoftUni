@@ -27,27 +27,24 @@ export default function CreateRecipe() {
         } catch (error) {
             console.log(error.message)
         }
-
-
     }
 
+    const { changeHandler, values, submitHandler } = useForm(initialValues, createHandler);
 
-    const { changeHandler, values, submitHandler } = useForm(initialValues, createHandler)
-
+    const [firstFormValues, setFirstFormValues] = useState([]);
     const onChange = (e) => {
-        e.preventDefault()
-        setFirstFormValues(firstFormValues => ({ ...firstFormValues, [e.target.name]: e.target.value }))
+        e.preventDefault();
+        setFirstFormValues(firstFormValues => ({ ...firstFormValues, [e.target.name]: e.target.value }));
     }
-    const [ingredients, setIngredient] = useState([])
-    const [firstFormValues, setFirstFormValues] = useState([])
+
+    const [ingredients, setIngredients] = useState([]);
+    const [newIngredient, setNewIngredient] = useState([])
 
     const onClickAddNewIngredientHandler = (e) => {
-        e.preventDefault()
-        // console.log(firstFormValues)
-        setIngredient([...ingredients, firstFormValues])
-        // console.log(ingredients)
-        initialValues.ingredients.push(ingredients)
-        console.log(initialValues)
+        e.preventDefault();
+        setNewIngredient(firstFormValues)
+        initialValues.ingredients.push(newIngredient);
+        console.log(initialValues.ingredients);
     };
 
 
@@ -111,9 +108,9 @@ export default function CreateRecipe() {
                             <a className="plus">
                                 <input type="submit" value="+" id="save" />
                             </a>
-
+                            {/* TO DO: To properly display each added ingredient */}
                             {
-                                ingredients.map((item, index) => (
+                                initialValues.ingredients.map((item, index) => (
                                     <p className="ingredient-text" key={index}>
                                         {Object.entries(item).map(([key, value]) => (
                                             `${key}: ${value} `
@@ -121,8 +118,8 @@ export default function CreateRecipe() {
                                     </p>
                                 ))
                             }
-
                         </form>
+
 
                         <form className="recipe-form" method="post" id="recipe-form" onSubmit={submitHandler} >
                             <label htmlFor="name">Name:</label>

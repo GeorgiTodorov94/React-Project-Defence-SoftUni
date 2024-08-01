@@ -13,12 +13,7 @@ import ShoppingList from '../../static/graphics/ShoppingList.png'
 export default function HomePage() {
     const monkey = new Audio(Monkey);
 
-    useEffect(() => {
-        (async () => {
-            const result = await recipesAPI.fetchAllRecipes();
-            setLatestRecipes(result.reverse().slice(0, 3));
-        })()
-    }, [])
+
     const navigate = useNavigate();
 
     const handleClick = (url) => {

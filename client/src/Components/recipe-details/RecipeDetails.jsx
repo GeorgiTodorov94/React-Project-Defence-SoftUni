@@ -1,59 +1,65 @@
-import Header from "../navigation/Navigation"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetOneRecipes } from "../../hooks/useRecipes";
+import '../../static/CSS/recipe.css'
 
 
 export default function RecipeDetails() {
+    const navigate = useNavigate()
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useGetOneRecipes(recipeId)
+    console.log(recipe.ingredients)
+    console.log(recipe);
+
+
+
+
+    // TO DO ----->>>> to Fix Full display of ingredients
+
+    // const fullIngredients = recipe.ingredients.map(ingredient => {
+    //     counter += 1;
+
+    //     return (
+    //         <div key={counter}>
+    //             <p><b> {ingredient?.unit}</b> {ingredient.ingredient}</p>
+    //         </div>
+    //     );
+    // });
 
 
     return (
-        <>
-            <section id="recipe-details">
-                <h1>Recipe Details</h1>
-                <div className="info-section">
+        <div className="recipe">
+            <h1><img
+                onClick={() => { navigate(-1) }}
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Back_Arrow.svg/768px-Back_Arrow.svg.png" width="35px"
+            /> {recipe?.name}</h1>
 
-                    <div className="recipe-header">
-                        <img className="recipe-img" src={recipe.imageUrl} />
-                        <h1>{recipe.name}</h1>
-                        <span className="levels">{recipe.category}</span>
-                        <p className="type">{recipe.servings}</p>
-                    </div>
+            <div className="core-recipe-details">
+                <img className="recipe-avatar" src={recipe?.imageUrl} />
+            </div>
+            <div className="ingredients">
+                Ingredients: {/** To do the CSS here. */}
+                {
+                    recipe?.ingredients?.map((item, index) => (
+                        <p className="ingredient-text" key={index}>
+                            {Object.entries(item).map(([key, value]) => (
+                                <span> {`${key}: ${value} `}</span>
+                            ))}
+                        </p>
+                    ))
+                }
+            </div>
+            <div width="70%">
+                <p><b>Method: </b> {recipe?.method}</p>
+                <p><b>Notes: </b>{recipe?.notes}</p>
+                <p><b>Category: </b>{recipe?.category} </p>
+                <p><b>Dietary: </b>{recipe?.dietary} </p>
+                <p><b>Recommended Servings: </b>{recipe?.servings} </p>
+            </div>
+            <button >Delete Recipe</button>
+            <button >Add Recipe to Meal Plan</button>
+            <button >Update Recipe</button>
 
-                    <p className="text">
-                        {recipe.method}
-                    </p>
-
-                    <div className="details-comments">
-                        <h2>Comments:</h2>
-                        <ul>
-                            <li className="comment">
-                                <p>Content: I rate this one quite highly.</p>
-                            </li>
-                            <li className="comment">
-                                <p>Content: The best recipe.</p>
-                            </li>
-                        </ul>
-                        <p className="no-comment">No comments.</p>
-                    </div>
-
-                    <div className="buttons">
-                        <a href="#" className="button">Edit</a>
-                        <a href="#" className="button">Delete</a>
-                    </div>
-                </div>
-
-                <article className="create-comment">
-                    <label>Add new comment:</label>
-                    <form className="form">
-                        <textarea name="comment" placeholder="Comment......"></textarea>
-                        <input className="btn submit" type="submit" value="Add Comment" />
-                    </form>
-                </article>
-
-            </section>
-
-        </>
+            {/*  create mealAddedToPlanner functionality */}
+        </div>
     )
 }
