@@ -1,29 +1,28 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetOneRecipes } from "../../hooks/useRecipes";
-import '../../static/CSS/recipe.css'
+import { useAuthContext } from "../../contexts/AuthContext";
+
+import '../../static/CSS/recipe.css';
+import recipesAPI from "../../api/recipes-Api";
 
 
 export default function RecipeDetails() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const { recipeId } = useParams();
-    const [recipe, setRecipe] = useGetOneRecipes(recipeId)
-    console.log(recipe.ingredients)
-    console.log(recipe);
+    const [recipe, setRecipe] = useGetOneRecipes(recipeId);
+    const { userId } = useAuthContext();
+    const isOwner = userId === recipe._ownerId;
 
 
+    const recipeDeleteHandler = async () => {
+        try {
+            await recipesAPI.remove(recipeId)
+            navigate('/recipes')
 
-
-    // TO DO ----->>>> to Fix Full display of ingredients
-
-    // const fullIngredients = recipe.ingredients.map(ingredient => {
-    //     counter += 1;
-
-    //     return (
-    //         <div key={counter}>
-    //             <p><b> {ingredient?.unit}</b> {ingredient.ingredient}</p>
-    //         </div>
-    //     );
-    // });
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
 
 
     return (
@@ -55,9 +54,15 @@ export default function RecipeDetails() {
                 <p><b>Dietary: </b>{recipe?.dietary} </p>
                 <p><b>Recommended Servings: </b>{recipe?.servings} </p>
             </div>
-            <button >Delete Recipe</button>
-            <button >Add Recipe to Meal Plan</button>
-            <button >Update Recipe</button>
+
+            {isOwner && (
+                <div className="buttons">
+                    <Link to={`/recipes`} onClick={recipeDeleteHandler} className="button">Delete Recipe</Link>
+                    <Link to={`/recipes/${recipeId}/update`} className="button">Update Recipe</Link>
+                </div>
+            )}
+            <Link className="button">Add Recipe to Meal Plan</Link>
+
 
             {/*  create mealAddedToPlanner functionality */}
         </div>

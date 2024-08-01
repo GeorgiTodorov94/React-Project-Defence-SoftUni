@@ -1341,67 +1341,98 @@
     };
     var seedData = {
         recipes: {
-            "3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                name: "Easy Lasagna",
-                imageUrl: "assets/lasagna.jpg",
-                ingredients: [
-                    "1 tbsp Ingredient 1",
-                    "2 cups Ingredient 2",
-                    "500 g  Ingredient 3",
-                    "25 g Ingredient 4"
-                ],
-                steps: [
-                    "Prepare ingredients",
-                    "Mix ingredients",
-                    "Cook until done"
-                ],
-                _createdOn: 1613551279012
-            },
-            "8f414b4f-ab39-4d36-bedb-2ad69da9c830": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                name: "Grilled Duck Fillet",
-                imageUrl: "assets/roast.jpg",
-                ingredients: [
-                    "500 g  Ingredient 1",
-                    "3 tbsp Ingredient 2",
-                    "2 cups Ingredient 3"
-                ],
-                steps: [
-                    "Prepare ingredients",
-                    "Mix ingredients",
-                    "Cook until done"
-                ],
-                _createdOn: 1613551344360
-            },
-            "985d9eab-ad2e-4622-a5c8-116261fb1fd2": {
+
+            "dc7b12d4-a68e-4390-8da7-56e6c00e3a33": {
                 _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a33",
                 name: "Roast Trout",
-                imageUrl: "assets/fish.jpg",
+                servings: "6",
+                category: "dinner",
+                dietary: "gluten-free",
                 ingredients: [
-                    "4 cups Ingredient 1",
-                    "1 tbsp Ingredient 2",
-                    "1 tbsp Ingredient 3",
-                    "750 g  Ingredient 4",
-                    "25 g Ingredient 5"
+                    [],
+                    {
+                        "amount": "150",
+                        "unit": "g",
+                        "ingredient": "Sugar"
+                    },
+                    {
+                        "amount": "5",
+                        "unit": "",
+                        "ingredient": "Eggs"
+                    },
+                    {
+                        "amount": "200",
+                        "unit": "g",
+                        "ingredient": "Butter"
+                    }
                 ],
-                steps: [
-                    "Prepare ingredients",
-                    "Mix ingredients",
-                    "Cook until done"
-                ],
+                imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
+                method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
+                notes: "Make sure its tasty",
                 _createdOn: 1613551388703
-            }
+            }, "dc7b12d4-a68e-4390-8da7-56e6c00e3a45": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a45",
+                name: "Roast Trout",
+                servings: "6",
+                category: "dinner",
+                dietary: "gluten-free",
+                ingredients: [
+                    [],
+                    {
+                        "amount": "150",
+                        "unit": "g",
+                        "ingredient": "Sugar"
+                    },
+                    {
+                        "amount": "5",
+                        "unit": "",
+                        "ingredient": "Eggs"
+                    },
+                    {
+                        "amount": "200",
+                        "unit": "g",
+                        "ingredient": "Butter"
+                    }
+                ],
+                imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
+                method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
+                notes: "Make sure its tasty",
+                _createdOn: 1613551388703
+            }, "dc7b12d4-a68e-4390-8da7-56e6c00e3a44": {
+                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+                _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a44",
+                name: "Roast Trout",
+                servings: "6",
+                category: "dinner",
+                dietary: "gluten-free",
+                ingredients: [
+                    [],
+                    {
+                        "amount": "150",
+                        "unit": "g",
+                        "ingredient": "Sugar"
+                    },
+                    {
+                        "amount": "5",
+                        "unit": "",
+                        "ingredient": "Eggs"
+                    },
+                    {
+                        "amount": "200",
+                        "unit": "g",
+                        "ingredient": "Butter"
+                    }
+                ],
+                imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
+                method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
+                notes: "Make sure its tasty",
+                _createdOn: 1613551388703
+            },
+
         },
-        comments: {
-            "0a272c58-b7ea-4e09-a000-7ec988248f66": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                content: "Great recipe!",
-                recipeId: "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
-                _createdOn: 1614260681375,
-                _id: "0a272c58-b7ea-4e09-a000-7ec988248f66"
-            }
-        },
+
         records: {
             i01: {
                 name: "John1",

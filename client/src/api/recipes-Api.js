@@ -13,10 +13,13 @@ export const getOne = (recipeId) => request.get(`${BASE_URL}/${recipeId}`);
 
 export const create = (recipeData) => request.post(`${BASE_URL}`, recipeData)
 
+export const remove = (recipeId) => request.del(`${BASE_URL}/${recipeId}`)
+
 const recipesAPI = {
-    getOne,
     fetchAllRecipes,
+    getOne,
     create,
+    remove
 };
 
 export default recipesAPI;
