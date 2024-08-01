@@ -31,6 +31,7 @@ function App() {
                         <Route path='/recipes' element={<RecipeList />} />
                         <Route path='/planner' element={<Planner />} />
                         <Route path='/recipes/:recipeId/details' element={<RecipeDetails />} />
+                        <Route path='/recipes/:recipeId/update' element={<CreateRecipe />} />
                         <Route path='/logout' element={<Logout />} />
                     </Routes>
                 </main>
