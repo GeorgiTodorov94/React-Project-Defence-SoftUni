@@ -28,7 +28,7 @@ export default function MyRecipes() {
                     </div>
 
                     <div className="data-result">
-                        {/* recipesSearchList */}
+                        {/* recipes Search List */}
                     </div>
                 </div>
 

@@ -52,9 +52,7 @@ export default function CreateRecipe() {
 
     return (
         <>
-            <div className='layout'>
-
-                <div className='layout-container'>
+            
 
                     <h1 className="add-recipe-title">Recipe Form</h1>
 
@@ -216,8 +214,7 @@ export default function CreateRecipe() {
                             </div>
                         </form>
                     </div >
-                </div >
-            </div >
+              
         </>
 
     )

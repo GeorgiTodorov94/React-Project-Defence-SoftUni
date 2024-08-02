@@ -37,7 +37,7 @@ export default function Navigation() {
 
                     {isAuthenticated && (
                         <div>
-                            <li className="nav-text" onClick={() => navigate('/planner')}>
+                            <li className="nav-text" onClick={() => navigate('/myrecipes')}>
                                 <img className="navIcon" src={planner} alt="" />
                             </li>
                             <li className="nav-text" onClick={() => navigate('/')}>
