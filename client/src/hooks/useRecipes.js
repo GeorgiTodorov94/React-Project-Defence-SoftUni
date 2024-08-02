@@ -19,7 +19,16 @@ export default function useGetAllRecipes() {
 
 
 export function useGetOneRecipes(recipeId) {
-    const [recipe, setRecipe] = useState({});
+    const [recipe, setRecipe] = useState({
+        name: '',
+        servings: '',
+        category: '',
+        dietary: '',
+        ingredients: [],
+        imageUrl: '',
+        method: '',
+        notes: '',
+    });
 
     useEffect(() => {
         (async () => {

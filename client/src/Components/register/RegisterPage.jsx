@@ -92,7 +92,7 @@ export default function RegisterPage() {
                             <div className="form-register">
                                 <label htmlFor="password"></label>
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="password"
                                     id="password"
                                     placeholder="Password"
@@ -105,7 +105,7 @@ export default function RegisterPage() {
                             <div className="form-register">
                                 <label htmlFor="rePassword"></label>
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="rePassword"
                                     id="rePassword"
                                     placeholder="Re-Password"

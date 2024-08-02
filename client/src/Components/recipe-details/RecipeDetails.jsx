@@ -30,15 +30,15 @@ export default function RecipeDetails() {
             <h1><img
                 onClick={() => { navigate(-1) }}
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Back_Arrow.svg/768px-Back_Arrow.svg.png" width="35px"
-            /> {recipe?.name}</h1>
+            /> {recipe.name}</h1>
 
             <div className="core-recipe-details">
-                <img className="recipe-avatar" src={recipe?.imageUrl} />
+                <img className="recipe-avatar" src={recipe.imageUrl} />
             </div>
             <div className="ingredients">
                 Ingredients: {/** To do the CSS here. */}
                 {
-                    recipe.ingredients?.map((item, index) => (
+                    recipe.ingredients.map((item, index) => (
                         <p className="ingredient-text" key={index}>
                             {Object.entries(item).map(([key, value]) => (
                                 <span> {`${value}`}</span>
@@ -48,11 +48,11 @@ export default function RecipeDetails() {
                 }
             </div>
             <div width="70%">
-                <p><b>Method: </b> {recipe?.method}</p>
-                <p><b>Notes: </b>{recipe?.notes}</p>
-                <p><b>Category: </b>{recipe?.category} </p>
-                <p><b>Dietary: </b>{recipe?.dietary} </p>
-                <p><b>Recommended Servings: </b>{recipe?.servings} </p>
+                <p><b>Method: </b> {recipe.method}</p>
+                <p><b>Notes: </b>{recipe.notes}</p>
+                <p><b>Category: </b>{recipe.category} </p>
+                <p><b>Dietary: </b>{recipe.dietary} </p>
+                <p><b>Recommended Servings: </b>{recipe.servings} </p>
             </div>
 
             {isOwner && (

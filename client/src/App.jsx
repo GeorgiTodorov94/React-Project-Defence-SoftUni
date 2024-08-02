@@ -13,7 +13,7 @@ import RecipeDetails from './Components/recipe-details/RecipeDetails'
 import RecipeEdit from './Components/recipe-edit/RecipeEdit'
 import RecipeList from './Components/recipe-list/RecipeList'
 import Logout from './Components/logout/Logout'
-import Planner from './Components/planner/Planner'
+import MyRecipes from './Components/my-recipes/MyRecipes'
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
                         <Route path='/register' element={<RegisterPage />} />
                         <Route path='/create' element={<CreateRecipe />} />
                         <Route path='/recipes' element={<RecipeList />} />
-                        <Route path='/planner' element={<Planner />} />
+                        <Route path='/myrecipes' element={<MyRecipes />} />
                         <Route path='/recipes/:recipeId/details' element={<RecipeDetails />} />
                         <Route path='/recipes/:recipeId/edit' element={<RecipeEdit />} />
                         <Route path='/logout' element={<Logout />} />

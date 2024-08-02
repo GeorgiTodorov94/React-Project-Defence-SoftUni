@@ -68,7 +68,7 @@ export default function Login() {
                             <div className="form-login-password">
                                 <label htmlFor="password"></label>
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="password"
                                     id="password"
                                     placeholder="Password"
@@ -80,7 +80,7 @@ export default function Login() {
                             <div className="form-login-password">
                                 <label htmlFor="rePassword"></label>
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="rePassword"
                                     placeholder="Repeat Password"
                                     id="rePassword"
