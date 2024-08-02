@@ -42,7 +42,7 @@ export default function HomePage() {
                     <img className="home-button-image" src={RecipeBook} />
                     <p className="home-button-title" >Recipe <br />Book</p>
                 </div>
-
+        {/* to fix the CSS here. */}
                 {isAuthenticated && (
                     <div className='link-container'>
                         <div className="home-button-group" onClick={() => handleClick("/planner")}>

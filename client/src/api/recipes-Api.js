@@ -11,15 +11,18 @@ export const fetchAllRecipes = async () => {
 
 export const getOne = (recipeId) => request.get(`${BASE_URL}/${recipeId}`);
 
-export const create = (recipeData) => request.post(`${BASE_URL}`, recipeData)
+export const create = (recipeData) => request.post(`${BASE_URL}`, recipeData);
 
-export const remove = (recipeId) => request.del(`${BASE_URL}/${recipeId}`)
+export const remove = (recipeId) => request.del(`${BASE_URL}/${recipeId}`);
+
+export const update = (recipeId, recipeData) => request.put(`${BASE_URL}/${recipeId}`, recipeData)
 
 const recipesAPI = {
     fetchAllRecipes,
     getOne,
     create,
-    remove
+    remove,
+    update
 };
 
 export default recipesAPI;

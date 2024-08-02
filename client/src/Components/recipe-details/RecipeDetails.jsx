@@ -4,6 +4,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 
 import '../../static/CSS/recipe.css';
 import recipesAPI from "../../api/recipes-Api";
+import { useEffect } from "react";
 
 
 export default function RecipeDetails() {
@@ -12,7 +13,6 @@ export default function RecipeDetails() {
     const [recipe, setRecipe] = useGetOneRecipes(recipeId);
     const { userId } = useAuthContext();
     const isOwner = userId === recipe._ownerId;
-
 
     const recipeDeleteHandler = async () => {
         try {
@@ -38,10 +38,10 @@ export default function RecipeDetails() {
             <div className="ingredients">
                 Ingredients: {/** To do the CSS here. */}
                 {
-                    recipe?.ingredients?.map((item, index) => (
+                    recipe.ingredients?.map((item, index) => (
                         <p className="ingredient-text" key={index}>
                             {Object.entries(item).map(([key, value]) => (
-                                <span> {`${key}: ${value} `}</span>
+                                <span> {`${value}`}</span>
                             ))}
                         </p>
                     ))
@@ -58,7 +58,7 @@ export default function RecipeDetails() {
             {isOwner && (
                 <div className="buttons">
                     <Link to={`/recipes`} onClick={recipeDeleteHandler} className="button">Delete Recipe</Link>
-                    <Link to={`/recipes/${recipeId}/update`} className="button">Update Recipe</Link>
+                    <Link to={`/recipes/${recipeId}/edit`} className="button">Update Recipe</Link>
                 </div>
             )}
             <Link className="button">Add Recipe to Meal Plan</Link>

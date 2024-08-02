@@ -40,7 +40,9 @@ export default function Navigation() {
                             <li className="nav-text" onClick={() => navigate('/planner')}>
                                 <img className="navIcon" src={planner} alt="" />
                             </li>
-
+                            <li className="nav-text" onClick={() => navigate('/')}>
+                                <img className="navIcon" src={homepage} alt="" />
+                            </li>
                             <li className="nav-text" onClick={() => navigate('/logout')}>
                                 <img className="navIcon" src={logout} alt="" />
                             </li>
