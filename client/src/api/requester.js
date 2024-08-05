@@ -23,7 +23,7 @@ export async function requester(method, url, data) {
             'Content-Type': 'application/json'
         };
 
-        options.body = JSON.stringify(data)
+        options.body = JSON.stringify(data);
     };
 
 
@@ -31,13 +31,17 @@ export async function requester(method, url, data) {
     const response = await fetch(url, options);
     if (response.status === 204) {
         return;
-    }
+    };
 
     const result = await response.json();
 
+    if (response.status === 400) {
+        throw result.message
+    };
+
     if (!response.ok) {
         throw result.message;
-    }
+    };
 
     return result;
 }
@@ -54,4 +58,4 @@ export default {
     post,
     put,
     del
-}
+};

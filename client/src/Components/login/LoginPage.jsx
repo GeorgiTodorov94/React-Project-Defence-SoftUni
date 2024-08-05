@@ -61,7 +61,17 @@ export default function Login() {
                                     placeholder="Email"
                                     value={values.email}
                                     onChange={changeHandler}
-
+                                />
+                            </div>
+                            <div className="form-register">
+                                <label htmlFor="username"></label>
+                                <input
+                                    type="username"
+                                    name="username"
+                                    id="username"
+                                    placeholder="Username"
+                                    value={values.username}
+                                    onChange={changeHandler}
                                 />
                             </div>
 
@@ -76,7 +86,7 @@ export default function Login() {
                                     onChange={changeHandler}
                                 />
                             </div>
-                            {/* 
+
                             <div className="form-login-password">
                                 <label htmlFor="rePassword"></label>
                                 <input
@@ -87,10 +97,10 @@ export default function Login() {
                                     value={values.rePassword}
                                     onChange={changeHandler}
                                 />
-                            </div> */}
+                            </div>
 
 
-                            <input name="submit" type="submit" value="Login"  /*onClick={onLoginClick} */ />
+                            <input name="submit" type="submit" value="Login" />
 
                             <div className="signUp_link">
                                 Not a Member ? <Link to={`/register`}>Sign-Up</Link>

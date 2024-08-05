@@ -27,8 +27,8 @@ export default function RecipeList() {
                     <button >Breakfast</button>
                     <button >Lunch</button>
                     <button >Dinner</button>
-                    <button >Sweet</button>
                     <img className="recipebook-monkey" src={logo} />
+                    <button >Sweet</button>
                     <button >Vegetarian</button>
                     <button >Vegan</button>
                     <button >Gluten-Free</button>

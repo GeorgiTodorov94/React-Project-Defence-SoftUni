@@ -4,26 +4,26 @@ export function useForm(initialValues, submitCallBack) {
     const [values, setValues] = useState(initialValues);
 
     useEffect(() => {
-        setValues(initialValues)
-    }, [initialValues])
+        setValues(initialValues);
+    }, [initialValues]);
 
     const changeHandler = (e) => {
         setValues(state => ({
             ...state,
             [e.target.name]: e.target.value
-        }))
+        }));
     };
 
     const submitHandler = async (e) => {
         e.preventDefault();
         await submitCallBack(values);
 
-        setValues(initialValues)
-    }
+        setValues(initialValues);
+    };
 
     return {
         values,
         changeHandler,
         submitHandler
-    }
-}
+    };
+};

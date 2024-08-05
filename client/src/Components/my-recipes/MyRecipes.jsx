@@ -16,6 +16,10 @@ export default function MyRecipes() {
 
     }, [recipes])
 
+    const onChange = (e) => {
+        e.preventDefault()
+    }
+
     return (
         <div>
             <div className="planner-overall-container">
@@ -33,7 +37,7 @@ export default function MyRecipes() {
                 </div>
 
                 <div className="planner-overall">
-                    <h1 className="planner-pagetitle">Planner</h1>
+                    <h1 className="planner-pagetitle">My Recipes</h1>
                     <div className="planner-link-container">
                         {ownedRecipes.length > 0
                             ? ownedRecipes.map(recipe => <RecipeListItem key={recipe._id} {...recipe} />)

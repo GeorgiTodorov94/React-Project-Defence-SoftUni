@@ -1,33 +1,35 @@
 import { useEffect, useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import '../../static/CSS/registerPage.css'
+import '../../static/CSS/registerPage.css';
 import { useRegister } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 
 
-const initialValues = { email: '', username: '', password: '', rePassword: '', };
+
+const initialValues = { email: '', username: '', password: '', rePassword: '' };
 export default function RegisterPage() {
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
     const register = useRegister();
     const navigate = useNavigate();
 
     const registerHandler = async ({ email, username, password, rePassword }) => {
 
-        if (password !== rePassword) {
-            return setError('Password mismatch!');
 
-        }
         try {
+            
             await register(email, username, password, rePassword);
-            navigate('/')
+            alert('You have successfully Registered')
+            navigate('/');
         } catch (error) {
-            setError(error.message)
-        }
-    }
+            setError(error.message);
+        };
+    };
+
+
     const { values,
         changeHandler,
         submitHandler
-    } = useForm(initialValues, registerHandler)
+    } = useForm(initialValues, registerHandler);
 
 
     // const baseURL = ('http://localhost:3030')
@@ -68,6 +70,7 @@ export default function RegisterPage() {
                             <div className="email">
                                 <label htmlFor="email"></label>
                                 <input
+                                    required
                                     type="email"
                                     name="email"
                                     id="email"
@@ -80,7 +83,8 @@ export default function RegisterPage() {
                             <div className="form-register">
                                 <label htmlFor="username"></label>
                                 <input
-                                    type="text"
+                                    required
+                                    type="username"
                                     name="username"
                                     id="username"
                                     placeholder="Username"
@@ -92,6 +96,7 @@ export default function RegisterPage() {
                             <div className="form-register">
                                 <label htmlFor="password"></label>
                                 <input
+                                    required
                                     type="password"
                                     name="password"
                                     id="password"
@@ -105,6 +110,7 @@ export default function RegisterPage() {
                             <div className="form-register">
                                 <label htmlFor="rePassword"></label>
                                 <input
+                                    required
                                     type="password"
                                     name="rePassword"
                                     id="rePassword"

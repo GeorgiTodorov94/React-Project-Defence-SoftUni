@@ -18,11 +18,11 @@ const initialValues = {
 
 
 export default function CreateRecipe() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const createRecipe = useRecipeCreate();
 
     const [ingredients, setIngredients] = useState([]);
-    const [render, setRender] = useState(true)
+    const [render, setRender] = useState(true);
     const [newIngredient, setNewIngredient] = useState({
         amount: '',
         unit: '',
@@ -112,13 +112,13 @@ export default function CreateRecipe() {
                     <a className="plus">
                         <input type="submit" value="+" id="save" />
                     </a>
-                    {/* TO DO: To properly display each added ingredient */}
+                    
                     <>
                         {ingredients.map((item, index) => {
                             return <p className="ingredient-text" key={index || 0}>
                                 {Object.entries(item).map(([name, value]) => {
                                     return (
-                                        <NewIngredientItem name={name} value={value} />
+                                        <NewIngredientItem item={item} name={name} value={value} />
                                     )
                                 })}
                             </p>
