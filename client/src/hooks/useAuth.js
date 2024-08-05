@@ -5,15 +5,14 @@ import bcryptjs from 'bcryptjs';
 
 
 export const useLogin = () => {
+    const { changeAuthState } = useContext(AuthContext);
 
-    const { changeAuthState } = useContext(AuthContext)
 
     const loginHandler = async (email, password) => {
 
-        const { password: _, ...authData } = await login(email, password)
 
-        changeAuthState(authData)
-        console.log(authData)
+        const { password: _, ...authData } = await login(email, password);
+        changeAuthState(authData);
         return authData;
     }
 
@@ -29,8 +28,8 @@ export const useRegister = () => {
             return setError('Password mismatch!');
         };
 
-        const salt = bcryptjs.genSaltSync(10);
-        const hashedPassword = await bcryptjs.hash(password, salt);
+        const salt = bcryptjs.genSaltSync(15);
+        const hashedPassword = bcryptjs.hashSync(password, salt);
 
         const newUser = {
             email: email,
@@ -42,13 +41,11 @@ export const useRegister = () => {
         if (!newUser.email || !newUser.password || !newUser.username || !newUser.rePassword) {
             return res.status(400).json({ message: 'Wrong wrong wrong!' });
         };
-        const { password: _, ...authData } = await register(email, username, password, rePassword);
-        console.log(newUser)
-        console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;_____________________--------------------------')
-        console.log(authData)
+        const { password: _, ...authData } = await register(newUser.email, newUser.username, newUser.password, newUser.rePassword);
+        console.log(newUser);
+        console.log(authData);
         changeAuthState(Object.assign(authData, newUser));
-        console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;_____________________--------------------------')
-        console.log(authData)
+        console.log(authData);
 
         return authData;
     }

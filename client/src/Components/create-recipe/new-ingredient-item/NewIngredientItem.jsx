@@ -3,7 +3,6 @@ import { useState } from "react"
 
 export default function NewIngredientItem({ name, value }) {
     const [word, setWord] = useState('');
-    const [deleteItem, setDeleteItem] = useState([]);
 
     useEffect(() => {
         setWord(name)

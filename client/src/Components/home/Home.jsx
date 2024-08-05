@@ -12,14 +12,12 @@ import ShoppingList from '../../static/graphics/ShoppingList.png'
 
 export default function HomePage() {
     const { isAuthenticated } = useContext(AuthContext);
-    const monkey = new Audio(Monkey);
 
 
     const navigate = useNavigate();
 
     const handleClick = (url) => {
         navigate(url);
-        monkey.play()
     }
 
 

@@ -20,6 +20,7 @@ const initialValues = {
 export default function CreateRecipe() {
     const navigate = useNavigate();
     const createRecipe = useRecipeCreate();
+    const [error, setError] = useState('')
 
     const [ingredients, setIngredients] = useState([]);
     const [render, setRender] = useState(true);
@@ -30,11 +31,12 @@ export default function CreateRecipe() {
     });
 
     const createHandler = async (values) => {
+        console.log(values)
         try {
             const { _id: recipeId, ...recipe } = await createRecipe(values);
             navigate(`/recipes/${recipeId}/details`);
         } catch (error) {
-            console.log(error.message);
+            setError(error.message);
         }
     }
 
@@ -112,7 +114,7 @@ export default function CreateRecipe() {
                     <a className="plus">
                         <input type="submit" value="+" id="save" />
                     </a>
-                    
+
                     <>
                         {ingredients.map((item, index) => {
                             return <p className="ingredient-text" key={index || 0}>
@@ -220,6 +222,9 @@ export default function CreateRecipe() {
                                 id="save"
                             />
                         </div>
+                        <p className='error'>
+                            {error}
+                        </p>
                     </div>
                 </form>
             </div >
