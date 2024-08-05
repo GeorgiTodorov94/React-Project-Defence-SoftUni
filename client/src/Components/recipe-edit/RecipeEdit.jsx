@@ -75,11 +75,11 @@ export default function RecipeEdit() {
                             onChange={changeHandler}
                         >
                             <option value={undefined}></option>
-                            <option value="breakfast">breakfast</option>
-                            <option value="dinner">dinner</option>
-                            <option value="lunch">lunch</option>
-                            <option value="snack">snack</option>
-                            <option value="sweet">sweet</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="dinner">Dinner</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="snack">Snack</option>
+                            <option value="sweet">Sweet</option>
                         </select>
                     </div>
                     <label htmlFor="dietary">Dietary:</label>
@@ -93,11 +93,11 @@ export default function RecipeEdit() {
                             onChange={changeHandler}
                         >
                             <option value={undefined}></option>
-                            <option value="dairy-free">dairy-free</option>
-                            <option value="gluten-free">gluten-free</option>
-                            <option value="protein">protein</option>
-                            <option value="vegan">vegan</option>
-                            <option value="vegetarian">vegetarian</option>
+                            <option value="dairy-free">Dairy-free</option>
+                            <option value="gluten-free">Gluten-free</option>
+                            <option value="protein">Protein</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="vegetarian">Vegetarian</option>
                         </select>
                     </div>
                     <label htmlFor="image">Image URL:</label>
@@ -111,20 +111,21 @@ export default function RecipeEdit() {
                     />
                     <label htmlFor="method">Write Method and Recipe Here</label>
                     <textarea
+                        className='methodName'
                         type="text"
                         cols="30"
                         rows="10"
-                        id="method"
+                        id="methodName"
                         name="method"
                         value={values.method}
                         onChange={changeHandler}
                     />
                     <label htmlFor="notes">Notes:</label>
-                    <textarea
+                    <textarea className='notesName'
                         type="text"
                         cols="30"
                         rows="10"
-                        id="notes"
+                        id="notesName"
                         name="notes"
                         onChange={changeHandler}
                         value={values.notes}

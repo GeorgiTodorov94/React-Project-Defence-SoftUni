@@ -4,7 +4,6 @@ import { useAuthContext } from "../../contexts/AuthContext";
 
 import '../../static/CSS/recipe.css';
 import recipesAPI from "../../api/recipes-Api";
-import { useEffect } from "react";
 
 
 export default function RecipeDetails() {
@@ -27,7 +26,7 @@ export default function RecipeDetails() {
 
     return (
         <div className="recipe">
-            <h1><img
+            <h1><img className="arrow"
                 onClick={() => { navigate(-1) }}
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Back_Arrow.svg/768px-Back_Arrow.svg.png" width="35px"
             /> {recipe.name}</h1>
@@ -40,19 +39,21 @@ export default function RecipeDetails() {
                 {
                     recipe.ingredients.map((item, index) => (
                         <p className="ingredient-text" key={index}>
-                            {Object.entries(item).map(([key, value]) => (
-                                <span> {`${value}`}</span>
-                            ))}
+                            {Object.entries(item).map(([key, value]) => {
+                                return (
+                                    <span> <strong> {`${value}`}</strong></span>
+                                );
+                            })}
                         </p>
                     ))
                 }
             </div>
             <div width="70%">
-                <p><b>Method: </b> {recipe.method}</p>
-                <p><b>Notes: </b>{recipe.notes}</p>
-                <p><b>Category: </b>{recipe.category} </p>
-                <p><b>Dietary: </b>{recipe.dietary} </p>
-                <p><b>Recommended Servings: </b>{recipe.servings} </p>
+                <p className="info-p"><b>Method: </b> {recipe.method}</p>
+                <p className="info-p"><b>Notes: </b>{recipe.notes}</p>
+                <p className="info-p"><b>Category: </b>{recipe.category} </p>
+                <p className="info-p"><b>Dietary: </b>{recipe.dietary} </p>
+                <p className="info-p"><b>Recommended Servings: </b>{recipe.servings} </p>
             </div>
 
             {isOwner && (
@@ -61,8 +62,9 @@ export default function RecipeDetails() {
                     <Link to={`/recipes/${recipeId}/edit`} className="button">Update Recipe</Link>
                 </div>
             )}
-            <Link className="button">Add Recipe to Meal Plan</Link>
-
+            <div className="buttons">
+                <Link className="button">Add Recipe to Meal Plan</Link>
+            </div>
 
             {/*  create mealAddedToPlanner functionality */}
         </div>

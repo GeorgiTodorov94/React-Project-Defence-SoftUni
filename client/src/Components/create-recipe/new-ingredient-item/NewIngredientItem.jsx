@@ -11,7 +11,7 @@ export default function NewIngredientItem({ name, value, }) {
     return (
         <>
             {<span className="ingredient-text" key={word}>
-                {`${value} `}
+                {` ${value} `}
             </span>
             }
 

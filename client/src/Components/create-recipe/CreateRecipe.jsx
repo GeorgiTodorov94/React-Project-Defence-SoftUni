@@ -20,22 +20,6 @@ const initialValues = {
 export default function CreateRecipe() {
     const navigate = useNavigate()
     const createRecipe = useRecipeCreate();
-    const createHandler = async (values) => {
-        try {
-            const { _id: recipeId, ...recipe } = await createRecipe(values)
-            navigate(`/recipes/${recipeId}/details`)
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
-
-    const { changeHandler, values, submitHandler } = useForm(initialValues, createHandler);
-
-    const [firstFormValues, setFirstFormValues] = useState([]);
-    const onChange = (e) => {
-        e.preventDefault();
-        setFirstFormValues(firstFormValues => ({ ...firstFormValues, [e.target.name]: e.target.value }));
-    };
 
     const [ingredients, setIngredients] = useState([]);
     const [render, setRender] = useState(true)
@@ -45,17 +29,34 @@ export default function CreateRecipe() {
         ingredient: ''
     });
 
+    const createHandler = async (values) => {
+        try {
+            const { _id: recipeId, ...recipe } = await createRecipe(values);
+            navigate(`/recipes/${recipeId}/details`);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    const { changeHandler, values, submitHandler } = useForm(initialValues, createHandler);
+    const [firstFormValues, setFirstFormValues] = useState([]);
+    const onChange = (e) => {
+        e.preventDefault();
+        setFirstFormValues(firstFormValues => ({ ...firstFormValues, [e.target.name]: e.target.value }));
+    };
+
+
     const onClickAddNewIngredientHandler = (e) => {
         e.preventDefault();
         initialValues.ingredients.push(newIngredient);
-        setRender(false)
+        setRender(false);
     };
 
     useEffect(() => {
-        setNewIngredient(firstFormValues)
+        setNewIngredient(firstFormValues);
         setIngredients(initialValues.ingredients);
-        setRender(true)
-        console.log(ingredients)
+        setRender(true);
+        console.log(ingredients);
     }, [newIngredient, firstFormValues, ingredients]);
 
     return (
@@ -65,7 +66,7 @@ export default function CreateRecipe() {
             <div className="add-recipe-form-container">
 
                 <form className="ingredient-form" id="ingredient-form" onSubmit={(e) => onClickAddNewIngredientHandler(e)}>
-                    <label className="ingredients" htmlFor="ingredients">Ingredients:</label>
+                    <label className="ingredients-label" htmlFor="ingredients">Ingredients:</label>
 
                     <label htmlFor="amount">Amount:</label>
                     <input
@@ -87,14 +88,16 @@ export default function CreateRecipe() {
                         value={values.unit}
                         onChange={onChange}
                     >
-                        <option value={undefined}></option>
-                        <option value="cup">cup</option>
-                        <option value="g">g</option>
-                        <option value="kg">kg</option>
-                        <option value="l">l</option>
-                        <option value="ml">ml</option>
-                        <option value="tbsp">tbsp</option>
-                        <option value="tsp">tsp</option>
+                        <option value={null}></option>
+                        <option value="Cup">Cups</option>
+                        <option value="Grams">Grams</option>
+                        <option value="Kilograms">Kilograms</option>
+                        <option value="Litres">Litres</option>
+                        <option value="Milliliters">Milliliters</option>
+                        <option value="Table spoons">Table spoons</option>
+                        <option value="Tea spoons">Tea spoons</option>
+                        <option value="Pieces">Pieces</option>
+                        <option value="Slices">Slices</option>
                     </select>
 
                     <label htmlFor="ingredient">Ingredient:</label>
@@ -112,7 +115,7 @@ export default function CreateRecipe() {
                     {/* TO DO: To properly display each added ingredient */}
                     <>
                         {ingredients.map((item, index) => {
-                            return <p className="ingredient-text" key={index}>
+                            return <p className="ingredient-text" key={index || 0}>
                                 {Object.entries(item).map(([name, value]) => {
                                     return (
                                         <NewIngredientItem name={name} value={value} />
@@ -154,11 +157,11 @@ export default function CreateRecipe() {
                             onChange={changeHandler}
                         >
                             <option value={undefined}></option>
-                            <option value="breakfast">breakfast</option>
-                            <option value="dinner">dinner</option>
-                            <option value="lunch">lunch</option>
-                            <option value="snack">snack</option>
-                            <option value="sweet">sweet</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Snack">Snack</option>
+                            <option value="Sweet">Sweet</option>
                         </select>
                     </div>
                     <label htmlFor="dietary">Dietary:</label>
@@ -172,11 +175,11 @@ export default function CreateRecipe() {
                             onChange={changeHandler}
                         >
                             <option value={undefined}></option>
-                            <option value="dairy-free">dairy-free</option>
-                            <option value="gluten-free">gluten-free</option>
-                            <option value="protein">protein</option>
-                            <option value="vegan">vegan</option>
-                            <option value="vegetarian">vegetarian</option>
+                            <option value="Dairy-free">Dairy-free</option>
+                            <option value="Gluten-free">Gluten-free</option>
+                            <option value="Protein">Protein</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Vegetarian">Vegetarian</option>
                         </select>
                     </div>
                     <label htmlFor="image">Image URL:</label>
@@ -188,7 +191,7 @@ export default function CreateRecipe() {
                         id="image"
                         name='imageUrl'
                     />
-                    <label htmlFor="method">Write Method and Recipe Here</label>
+                    <label htmlFor="method">Cooking Methodology</label>
                     <textarea
                         type="text"
                         cols="30"
@@ -209,12 +212,14 @@ export default function CreateRecipe() {
                         value={values.notes}
                     />
                     <div className="save" colSpan="2"></div>
-                    <div className="add-recipe-save">
-                        <input
-                            type="submit"
-                            value="Save"
-                            id="save"
-                        />
+                    <div>
+                        <div className="add-recipe-save">
+                            <input
+                                type="submit"
+                                value="Save"
+                                id="save"
+                            />
+                        </div>
                     </div>
                 </form>
             </div >
