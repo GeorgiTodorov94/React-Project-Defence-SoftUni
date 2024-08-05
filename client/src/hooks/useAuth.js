@@ -8,11 +8,12 @@ export const useLogin = () => {
 
     const { changeAuthState } = useContext(AuthContext)
 
-    const loginHandler = async (email, password, rePassword) => {
+    const loginHandler = async (email, password) => {
 
-        const { password: _, ...authData } = await login(email, password, rePassword)
+        const { password: _, ...authData } = await login(email, password)
 
         changeAuthState(authData)
+        console.log(authData)
         return authData;
     }
 
@@ -41,10 +42,14 @@ export const useRegister = () => {
         if (!newUser.email || !newUser.password || !newUser.username || !newUser.rePassword) {
             return res.status(400).json({ message: 'Wrong wrong wrong!' });
         };
+        const { password: _, ...authData } = await register(email, username, password, rePassword);
+        console.log(newUser)
+        console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;_____________________--------------------------')
+        console.log(authData)
+        changeAuthState(Object.assign(authData, newUser));
+        console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;_____________________--------------------------')
+        console.log(authData)
 
-        const { password: _, ...authData } = await register(email, username, password, rePassword)
-
-        changeAuthState(Object.assign({}, authData, newUser));
         return authData;
     }
 

@@ -16,7 +16,7 @@ export default function RegisterPage() {
 
 
         try {
-            
+
             await register(email, username, password, rePassword);
             alert('You have successfully Registered')
             navigate('/');

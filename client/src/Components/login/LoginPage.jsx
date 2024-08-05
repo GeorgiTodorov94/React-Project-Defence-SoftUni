@@ -2,13 +2,14 @@ import '../../static/CSS/login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useLogin } from "../../hooks/useAuth";
+import { useState } from 'react';
 const initialValues = { email: '', password: '' }
 
 export default function Login() {
 
     const login = useLogin();
     const navigate = useNavigate();
-
+    const [error, setError] = useState('')
     const loginHandler = async ({ email, password }) => {
 
         try {
@@ -16,7 +17,7 @@ export default function Login() {
             navigate('/')
 
         } catch (error) {
-            console.log(error.message)
+            setError(error.message)
         }
     }
     const { changeHandler, submitHandler, values } = useForm(initialValues, loginHandler);
@@ -63,17 +64,7 @@ export default function Login() {
                                     onChange={changeHandler}
                                 />
                             </div>
-                            <div className="form-register">
-                                <label htmlFor="username"></label>
-                                <input
-                                    type="username"
-                                    name="username"
-                                    id="username"
-                                    placeholder="Username"
-                                    value={values.username}
-                                    onChange={changeHandler}
-                                />
-                            </div>
+
 
                             <div className="form-login-password">
                                 <label htmlFor="password"></label>
@@ -86,19 +77,6 @@ export default function Login() {
                                     onChange={changeHandler}
                                 />
                             </div>
-
-                            <div className="form-login-password">
-                                <label htmlFor="rePassword"></label>
-                                <input
-                                    type="password"
-                                    name="rePassword"
-                                    placeholder="Repeat Password"
-                                    id="rePassword"
-                                    value={values.rePassword}
-                                    onChange={changeHandler}
-                                />
-                            </div>
-
 
                             <input name="submit" type="submit" value="Login" />
 
