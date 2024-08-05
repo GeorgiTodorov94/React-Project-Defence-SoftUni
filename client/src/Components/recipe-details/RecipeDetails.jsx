@@ -4,6 +4,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 
 import '../../static/CSS/recipe.css';
 import recipesAPI from "../../api/recipes-Api";
+import { nanoid } from 'nanoid'
 
 
 export default function RecipeDetails() {
@@ -38,7 +39,7 @@ export default function RecipeDetails() {
                 Ingredients: {/** To do the CSS here. */}
                 {
                     recipe.ingredients.map((item, index) => (
-                        <p className="ingredient-text" key={index}>
+                        <p className="ingredient-text" key={nanoid()}>
                             {Object.entries(item).map(([key, value]) => {
                                 return (
                                     <span> <strong> {`${value}`}</strong></span>
@@ -65,8 +66,6 @@ export default function RecipeDetails() {
             <div className="buttons">
                 <Link className="button">Add Recipe to Meal Plan</Link>
             </div>
-
-            {/*  create mealAddedToPlanner functionality */}
         </div>
     )
 }

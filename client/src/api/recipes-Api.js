@@ -17,7 +17,18 @@ export const remove = (recipeId) => request.del(`${BASE_URL}/${recipeId}`);
 
 export const update = (recipeId, recipeData) => request.put(`${BASE_URL}/${recipeId}`, recipeData);
 
-export const addToPersonalList = (recipeId, recipeData) => request.post(`http://localhost:3030/data/personalList/`, recipeData);
+// export const addToPersonalList = (recipeData) => request.post(`http://localhost:3030/data/ideas`, recipeData);
+
+// export const fetchAllFromPersonalList = async () => {
+//     const result = await request.get(`http://localhost:3030/data/ideas`);
+
+//     const personalRecipes = Object.values(result);
+
+//     return personalRecipes;
+// };
+
+// export const deleteFromPersonalList = (recipeId) => request.del(`http://localhost:3030/data/ideas/${recipeId}`);
+
 
 const recipesAPI = {
     fetchAllRecipes,
@@ -25,7 +36,9 @@ const recipesAPI = {
     create,
     remove,
     update,
-    addToPersonalList
+    // addToPersonalList,
+    // fetchAllFromPersonalList,
+    // deleteFromPersonalList,
 };
 
 export default recipesAPI;

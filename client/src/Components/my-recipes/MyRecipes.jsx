@@ -5,19 +5,21 @@ import { useEffect, useState } from 'react';
 import '../../static/CSS/my-recipes.css'
 import { useNavigate } from 'react-router-dom';
 import MyRecipeItem from './my-recipe-item/MyRecipeItem';
+import requester from '../../api/requester';
+import recipesAPI from '../../api/recipes-Api';
+import useGetPersonalRecipes from '../../hooks/useRecipes';
 
 export default function MyRecipes() {
     const [recipes, setRecipes] = useGetAllRecipes();
-    const { userId } = useAuthContext();
     const [ownedRecipes, setOwnedRecipes] = useState([]);
     const [searchInputValue, setSearchInputValue] = useState('');
+    const { userId } = useAuthContext();
 
     useEffect(() => {
-        const ownedRecipesArray = recipes.filter(obj => obj._ownerId === userId);
-        setOwnedRecipes(ownedRecipesArray);
-
-        // console.log(ownedRecipesArray);
-    }, [recipes, searchInputValue])
+        const ownerIdRecipesArray = personalRecipes.filter(obj => obj._ownerId === userId);
+        setOwnedRecipes(ownerIdRecipesArray);
+        console.log(ownedRecipes);
+    }, [recipes, searchInputValue]);
 
     const onChange = (e) => {
         e.preventDefault();
@@ -30,7 +32,7 @@ export default function MyRecipes() {
 
     const onSearch = () => {
         console.log(searchInputValue);
-    }
+    };
 
 
     return (

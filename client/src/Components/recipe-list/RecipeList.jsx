@@ -7,7 +7,8 @@ import { nanoid } from 'nanoid'
 import { useState, useEffect } from 'react';
 
 export default function RecipeList() {
-    const [recipes, setRecipes] = useGetAllRecipes()
+    const [recipes, setRecipes] = useGetAllRecipes();
+
     const RecipesApi = [
         {
             name: "recipes",
@@ -21,7 +22,10 @@ export default function RecipeList() {
     const [searchTerm, setSearchTerm] = useState([]);
     const [noResults, setNoResults] = useState(false);
 
+
     const handleSearch = (e) => setSearchTerm(e.target.value);
+
+
 
     useEffect(() => {
         loadRecipes(RecipesApi[0].url);
@@ -169,9 +173,8 @@ export default function RecipeList() {
 
             </div>
             <div className="recipes-wrapper">
-                {console.log(displayedRecipesList)}
                 {displayedRecipesList.length > 0
-                    ? <RecipeListItem key={nanoid} recipes={displayedRecipesList} />
+                    ? <RecipeListItem key={nanoid()} recipes={displayedRecipesList} />
                     : (<div className="no-results">
                         <img className="no-results-image" src={sadMonkey} />
                         <h1>No results</h1>Your search didn't find <br />any recipes

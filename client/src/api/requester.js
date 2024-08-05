@@ -39,9 +39,15 @@ export async function requester(method, url, data) {
         throw result.message
     };
 
+    if (response.status === 401) {
+        throw new Error('You are Unauthorized!')
+    }
+
+
     if (!response.ok) {
         throw result.message;
     };
+
 
     return result;
 }

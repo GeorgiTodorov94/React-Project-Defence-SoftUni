@@ -17,6 +17,23 @@ export default function useGetAllRecipes() {
     return [recipes, setRecipes]
 };
 
+// export function useGetPersonalRecipes() {
+
+//     const [personalRecipes, setPersonalRecipes] = useState([]);
+
+//     useEffect(() => {
+
+//         (async () => {
+
+//             const result = await recipesAPI.fetchAllFromPersonalList();
+//             setPersonalRecipes(result);
+//         })();
+
+//     }, []);
+
+//     return [personalRecipes, setPersonalRecipes]
+// }
+
 
 export function useGetOneRecipes(recipeId) {
     const [recipe, setRecipe] = useState({
