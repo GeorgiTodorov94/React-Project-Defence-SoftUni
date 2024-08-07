@@ -9,7 +9,7 @@ import MealPlannerService from "../../api/myRecipesService";
 
 export default function RecipeDetails() {
     const navigate = useNavigate();
-    const { userId } = useAuthContext();
+    const { userId, isAuthenticated } = useAuthContext();
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useGetOneRecipes(recipeId);
     const isOwner = userId === recipe._ownerId;
@@ -79,9 +79,12 @@ export default function RecipeDetails() {
                     <Link to={`/recipes/${recipeId}/edit`} className="button">Update Recipe</Link>
                 </div>
             )}
-            <div className="buttons">
-                <Link onClick={() => handleAdding()} className="button">Add Recipe to Meal Plan</Link>
-            </div>
+            {!!isAuthenticated && (
+                <div className="buttons">
+                    <Link onClick={() => handleAdding()} className="button">Add Recipe to Meal Plan</Link>
+                </div>
+            )}
+
         </div>
     )
 }

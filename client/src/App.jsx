@@ -1,23 +1,23 @@
-import { Routes, Route } from 'react-router-dom'
-import React from 'react'
+import { Routes, Route } from 'react-router-dom';
+import React from 'react';
 
-import { AuthContextProvider } from './contexts/AuthContext'
+import { AuthContextProvider } from './contexts/AuthContext';
 
-import './App.css'
+import './App.css';
 
-import HomePage from './Components/home/Home'
-import CreateRecipe from './Components/create-recipe/CreateRecipe'
-import Navigation from './Components/navigation/Navigation'
-import Login from './Components/login/LoginPage'
-import RegisterPage from './Components/register/RegisterPage'
-import RecipeDetails from './Components/recipe-details/RecipeDetails'
-import RecipeEdit from './Components/recipe-edit/RecipeEdit'
-import RecipeList from './Components/recipe-list/RecipeList'
-import Logout from './Components/logout/Logout'
-import MyRecipes from './Components/my-recipes/MyRecipes'
+import HomePage from './Components/home/Home';
+import CreateRecipe from './Components/create-recipe/CreateRecipe';
+import Navigation from './Components/navigation/Navigation';
+import Login from './Components/login/LoginPage';
+import RegisterPage from './Components/register/RegisterPage';
+import RecipeDetails from './Components/recipe-details/RecipeDetails';
+import RecipeEdit from './Components/recipe-edit/RecipeEdit';
+import RecipeList from './Components/recipe-list/RecipeList';
+import Logout from './Components/logout/Logout';
+import MyRecipes from './Components/my-recipes/MyRecipes';
+import RoutGuard from './route-guards/routeGuards';
 
 function App() {
-
     return (
         < AuthContextProvider >
             <div className='layout'>
@@ -29,7 +29,10 @@ function App() {
                         <Route path='/register' element={<RegisterPage />} />
                         <Route path='/create' element={<CreateRecipe />} />
                         <Route path='/recipes' element={<RecipeList />} />
-                        <Route path='/myrecipes/:userId' element={<MyRecipes />} />
+                        <Route path='/myrecipes/:userId' element={(
+                            <RoutGuard>
+                                <MyRecipes />
+                            </RoutGuard>)} />
                         <Route path='/recipes/:recipeId/details' element={<RecipeDetails />} />
                         <Route path='/:userId/:recipeId' element={<RecipeDetails />} />
                         <Route path='/recipes/:recipeId/edit' element={<RecipeEdit />} />
