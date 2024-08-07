@@ -79,7 +79,7 @@ export default function RegisterPage() {
                                     onChange={changeHandler}
                                 />
                             </div>
-
+                            {/* 
                             <div className="form-register">
                                 <label htmlFor="username"></label>
                                 <input
@@ -91,7 +91,7 @@ export default function RegisterPage() {
                                     value={values.username}
                                     onChange={changeHandler}
                                 />
-                            </div>
+                            </div> */}
 
                             <div className="form-register">
                                 <label htmlFor="password"></label>
@@ -107,7 +107,7 @@ export default function RegisterPage() {
                             </div>
 
 
-                            <div className="form-register">
+                            {/* <div className="form-register">
                                 <label htmlFor="rePassword"></label>
                                 <input
                                     required
@@ -118,7 +118,7 @@ export default function RegisterPage() {
                                     value={values.rePassword}
                                     onChange={changeHandler}
                                 />
-                            </div>
+                            </div> */}
 
                             {/* <div className="forgot-password">
                         <Link to={'/'} className="forgot-password-register-form">Forgot Password?</Link>

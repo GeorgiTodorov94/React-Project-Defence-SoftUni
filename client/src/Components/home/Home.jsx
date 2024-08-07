@@ -49,10 +49,7 @@ export default function HomePage() {
                             <p className="home-button-title" >My <br />Recipes</p>
                         </div>
 
-                        <div className="home-button-group" onClick={() => handleClick("/shoppingList")}>
-                            <img className="home-button-image" src={ShoppingList} />
-                            <p className="home-button-title" >Shopping <br />List</p>
-                        </div>
+
                     </div>
                 )}
             </div>

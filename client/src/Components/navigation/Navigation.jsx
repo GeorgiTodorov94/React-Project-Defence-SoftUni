@@ -1,6 +1,9 @@
 import { useContext } from 'react';
+
 import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
+
 import '../../static/CSS/navigation.css';
+
 import { useNavigate } from 'react-router-dom';
 import add from '../../static/graphics/AddRecipeIcon.png'
 import book from '../../static/graphics/RecipeBookIcon.png'

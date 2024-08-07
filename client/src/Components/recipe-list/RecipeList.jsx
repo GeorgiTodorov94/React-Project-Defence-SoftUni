@@ -1,3 +1,4 @@
+import { useAuthContext } from '../../contexts/AuthContext';
 import useGetAllRecipes from '../../hooks/useRecipes';
 import '../../static/CSS/recipeList.css';
 import logo from '../../static/graphics/MonkeyChefLogo.png';
@@ -8,7 +9,7 @@ import { useState, useEffect } from 'react';
 
 export default function RecipeList() {
     const [recipes, setRecipes] = useGetAllRecipes();
-
+    const { isAuthenticated } = useAuthContext()
     const RecipesApi = [
         {
             name: "recipes",
@@ -172,15 +173,28 @@ export default function RecipeList() {
 
 
             </div>
-            <div className="recipes-wrapper">
-                {displayedRecipesList.length > 0
-                    ? <RecipeListItem key={nanoid()} recipes={displayedRecipesList} />
-                    : (<div className="no-results">
+            {isAuthenticated && (
+                <div className="recipes-wrapper">
+                    {displayedRecipesList.length > 0
+                        ? <RecipeListItem key={nanoid()} recipes={displayedRecipesList} />
+                        : (<div className="no-results">
+                            <img className="no-results-image" src={sadMonkey} />
+                            <h1>No results</h1>Your search didn't find <br />any recipes
+                        </div>)
+                    }
+                </div>
+            )}
+
+            {!isAuthenticated && (
+                <div className="recipes-wrapper">
+                    <div className="no-results">
                         <img className="no-results-image" src={sadMonkey} />
-                        <h1>No results</h1>Your search didn't find <br />any recipes
-                    </div>)
-                }
-            </div>
+                        <h1>No results</h1>You need to login. <br />
+                    </div>
+
+                </div>
+            )}
+
         </>
     );
 
