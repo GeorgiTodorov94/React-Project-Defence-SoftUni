@@ -18,10 +18,6 @@ export const login = async (email, password, rePassword) => requester.post(`${BA
 // }
 
 
-
-
-
-
 export const register = async (email, username, password, rePassword) => {
 
     const salt = await bcryptjs.genSalt(10);

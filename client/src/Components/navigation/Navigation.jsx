@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
 import '../../static/CSS/navigation.css';
 import { useNavigate } from 'react-router-dom';
 import add from '../../static/graphics/AddRecipeIcon.png'
@@ -12,6 +12,7 @@ import logout from '../../static/graphics/SadMonkey.png'
 
 export default function Navigation() {
     const { isAuthenticated } = useContext(AuthContext);
+    const { userId } = useAuthContext();
 
     const navigate = useNavigate();
     return (
@@ -37,7 +38,7 @@ export default function Navigation() {
 
                     {isAuthenticated && (
                         <div>
-                            <li className="nav-text" onClick={() => navigate('/myrecipes')}>
+                            <li className="nav-text" onClick={() => navigate(`/myrecipes/${userId}`)}>
                                 <img className="navIcon" src={planner} alt="" />
                             </li>
                             <li className="nav-text" onClick={() => navigate('/')}>

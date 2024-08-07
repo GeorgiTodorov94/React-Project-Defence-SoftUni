@@ -18,9 +18,8 @@ import MyRecipes from './Components/my-recipes/MyRecipes'
 
 function App() {
 
-
     return (
-        <AuthContextProvider >
+        < AuthContextProvider >
             <div className='layout'>
                 <Navigation />
                 <main className='layout-container'>
@@ -30,15 +29,16 @@ function App() {
                         <Route path='/register' element={<RegisterPage />} />
                         <Route path='/create' element={<CreateRecipe />} />
                         <Route path='/recipes' element={<RecipeList />} />
-                        <Route path='/myrecipes' element={<MyRecipes />} />
+                        <Route path='/myrecipes/:userId' element={<MyRecipes />} />
                         <Route path='/recipes/:recipeId/details' element={<RecipeDetails />} />
+                        <Route path='/:userId/:recipeId' element={<RecipeDetails />} />
                         <Route path='/recipes/:recipeId/edit' element={<RecipeEdit />} />
                         <Route path='/logout' element={<Logout />} />
                     </Routes>
                 </main>
             </div>
-        </AuthContextProvider>
-    )
-}
+        </ AuthContextProvider>
+    );
+};
 
-export default App
+export default App;

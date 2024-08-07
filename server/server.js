@@ -1341,114 +1341,112 @@
     };
     var seedData = {
         personalList: {
-            "dc7b12d4-a68e-4390-8da7-56e6c00e3a33": {
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-                _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a33",
-                name: "French Toast",
-                servings: "6",
-                category: "dinner",
-                dietary: "gluten-free",
-                ingredients: [
-                    [],
-                    {
-                        "amount": "150",
-                        "unit": "g",
-                        "ingredient": "Sugar"
-                    },
-                    {
-                        "amount": "5",
-                        "unit": "",
-                        "ingredient": "Eggs"
-                    },
-                    {
-                        "amount": "200",
-                        "unit": "g",
-                        "ingredient": "Butter"
-                    },
-                    {
-                        "amount": "10",
-                        "unit": "units",
-                        "ingredient": "Bread"
-                    }
+            userId: {},
+            // "dc7b12d4-a68e-4390-8da7-56e6c00e3a33": {
+            //     _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+            //     _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a33",
+            //     name: "French Toast",
+            //     servings: "6",
+            //     category: "dinner",
+            //     dietary: "gluten-free",
+            //     ingredients: [
+            //         {
+            //             "amount": "150",
+            //             "unit": "g",
+            //             "ingredient": "Sugar"
+            //         },
+            //         {
+            //             "amount": "5",
+            //             "unit": "",
+            //             "ingredient": "Eggs"
+            //         },
+            //         {
+            //             "amount": "200",
+            //             "unit": "g",
+            //             "ingredient": "Butter"
+            //         },
+            //         {
+            //             "amount": "10",
+            //             "unit": "units",
+            //             "ingredient": "Bread"
+            //         }
 
-                ],
-                imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
-                method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
-                notes: "Make sure its tasty",
-                _createdOn: 1613551388703
-            },
-            "dc7b12d4-a68e-4390-8da7-56e6c00e3a33": {
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-                _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a33",
-                name: "French Toast",
-                servings: "6",
-                category: "dinner",
-                dietary: "gluten-free",
-                ingredients: [
-                    [],
-                    {
-                        "amount": "150",
-                        "unit": "g",
-                        "ingredient": "Sugar"
-                    },
-                    {
-                        "amount": "5",
-                        "unit": "",
-                        "ingredient": "Eggs"
-                    },
-                    {
-                        "amount": "200",
-                        "unit": "g",
-                        "ingredient": "Butter"
-                    },
-                    {
-                        "amount": "10",
-                        "unit": "units",
-                        "ingredient": "Bread"
-                    }
+            //     ],
+            //     imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
+            //     method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
+            //     notes: "Make sure its tasty",
+            //     _createdOn: 1613551388703
+            // },
+            // "dc7b12d4-a68e-4390-8da7-56e6c00e3a33": {
+            //     _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+            //     _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a33",
+            //     name: "French Toast",
+            //     servings: "6",
+            //     category: "dinner",
+            //     dietary: "gluten-free",
+            //     ingredients: [
+            //         {
+            //             "amount": "150",
+            //             "unit": "g",
+            //             "ingredient": "Sugar"
+            //         },
+            //         {
+            //             "amount": "5",
+            //             "unit": "",
+            //             "ingredient": "Eggs"
+            //         },
+            //         {
+            //             "amount": "200",
+            //             "unit": "g",
+            //             "ingredient": "Butter"
+            //         },
+            //         {
+            //             "amount": "10",
+            //             "unit": "units",
+            //             "ingredient": "Bread"
+            //         }
 
-                ],
-                imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
-                method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
-                notes: "Make sure its tasty",
-                _createdOn: 1613551388703
-            },
-            "dc7b12d4-a68e-4390-8da7-56e6c00e3a33": {
-                _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
-                _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a33",
-                name: "French Toast",
-                servings: "6",
-                category: "dinner",
-                dietary: "gluten-free",
-                ingredients: [
-                    [],
-                    {
-                        "amount": "150",
-                        "unit": "g",
-                        "ingredient": "Sugar"
-                    },
-                    {
-                        "amount": "5",
-                        "unit": "",
-                        "ingredient": "Eggs"
-                    },
-                    {
-                        "amount": "200",
-                        "unit": "g",
-                        "ingredient": "Butter"
-                    },
-                    {
-                        "amount": "10",
-                        "unit": "units",
-                        "ingredient": "Bread"
-                    }
+            //     ],
+            //     imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
+            //     method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
+            //     notes: "Make sure its tasty",
+            //     _createdOn: 1613551388703
+            // },
+            // "dc7b12d4-a68e-4390-8da7-56e6c00e3a33": {
+            //     _ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+            //     _id: "dc7b12d4-a68e-4390-8da7-56e6c00e3a33",
+            //     name: "French Toast",
+            //     servings: "6",
+            //     category: "dinner",
+            //     dietary: "gluten-free",
+            //     ingredients: [
+            //         {
+            //             "amount": "150",
+            //             "unit": "g",
+            //             "ingredient": "Sugar"
+            //         },
+            //         {
+            //             "amount": "5",
+            //             "unit": "",
+            //             "ingredient": "Eggs"
+            //         },
+            //         {
+            //             "amount": "200",
+            //             "unit": "g",
+            //             "ingredient": "Butter"
+            //         },
+            //         {
+            //             "amount": "10",
+            //             "unit": "units",
+            //             "ingredient": "Bread"
+            //         }
 
-                ],
-                imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
-                method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
-                notes: "Make sure its tasty",
-                _createdOn: 1613551388703
-            },
+            //     ],
+            //     imageUrl: "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
+            //     method: "Stir The eggs, Melt the butter, Melt The sugar, Add everything together.",
+            //     notes: "Make sure its tasty",
+            //     _createdOn: 1613551388703
+            // },
         },
         recipes: {
 
@@ -1460,7 +1458,7 @@
                 category: "dinner",
                 dietary: "gluten-free",
                 ingredients: [
-                    [],
+
                     {
                         "amount": "150",
                         "unit": "g",
@@ -1495,7 +1493,7 @@
                 category: "dinner",
                 dietary: "gluten-free",
                 ingredients: [
-                    [],
+
                     {
                         "amount": "150",
                         "unit": "g",
@@ -1561,7 +1559,7 @@
                 category: "dinner",
                 dietary: "gluten-free",
                 ingredients: [
-                    [],
+
                     {
                         "amount": "150",
                         "unit": "g",
@@ -1695,6 +1693,7 @@
         likes: {
         },
         ideas: {
+            
         },
         catalog: {
             "53d4dbf5-7f41-47ba-b485-43eccb91cb95": {

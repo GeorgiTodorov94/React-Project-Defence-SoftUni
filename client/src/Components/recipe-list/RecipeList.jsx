@@ -29,18 +29,17 @@ export default function RecipeList() {
 
     useEffect(() => {
         loadRecipes(RecipesApi[0].url);
-        return () => {
-        };
     }, []);
 
-    const loadRecipes = url => {
+    const loadRecipes = (url) => {
         fetch(url)
-            .then(result => result?.json())
+            .then(result => result.json())
             .then(recipesJson => {
                 setDisplayedRecipesList(recipesJson);
                 setPermanentRecipesList(recipesJson);
             });
     };
+    // console.log(displayedRecipesList.slice())
 
     const reloadRecipes = () => {
         setDisplayedRecipesList(permanentRecipesList);
@@ -48,11 +47,12 @@ export default function RecipeList() {
         setSearchTerm("");
     };
 
-    const recipeByTitle = displayedRecipesList?.slice(0);
+    const recipeByTitle = displayedRecipesList.slice();
+    // console.log(recipeByTitle)
 
-    recipeByTitle?.sort(function (a, b) {
-        let x = a.name.toLowerCase();
-        let y = b.name.toLowerCase();
+    recipeByTitle.sort(function (a, b) {
+        let x = a?.name?.toLowerCase();
+        let y = b?.name?.toLowerCase();
         return x < y ? -1 : x > y ? 1 : 0;
     });
 
@@ -65,7 +65,7 @@ export default function RecipeList() {
 
     const sortName = function () {
         setDisplayedRecipesList(recipeByTitle);
-        console.log(recipeByTitle)
+        // console.log(recipeByTitle)
     };
 
     const sortDefault = function () {
@@ -79,10 +79,10 @@ export default function RecipeList() {
         foundItems = [];
         displayedRecipesList?.map(recipe => {
             if (recipe?.name?.toLowerCase().includes(searchTerm?.toLowerCase()) === true) {
-                console.log(searchTerm)
+                // console.log(searchTerm)
                 foundItems.push(recipe)
-                console.log(foundItems)
-                console.log(displayedRecipesList)
+                // console.log(foundItems)
+                // console.log(displayedRecipesList)
             };
 
             setDisplayedRecipesList(foundItems);
@@ -90,7 +90,7 @@ export default function RecipeList() {
         });
     };
 
-    console.log(displayedRecipesList);
+    // console.log(displayedRecipesList);
 
     const filterByCategory = function (filterBy) {
         foundItems = [];
@@ -100,7 +100,7 @@ export default function RecipeList() {
                 foundItems.push(recipe);
             }
         })
-        console.log("FoundItems", foundItems);
+        // console.log("FoundItems", foundItems);
         setDisplayedRecipesList(foundItems);
     };
 

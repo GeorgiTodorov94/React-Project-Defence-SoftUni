@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
 import '../../static/CSS/homepage.css';
 import Monkey from '../../static/graphics/Monkey.wav'
 import React from 'react'
@@ -12,6 +12,7 @@ import ShoppingList from '../../static/graphics/ShoppingList.png'
 
 export default function HomePage() {
     const { isAuthenticated } = useContext(AuthContext);
+    const { userId } = useAuthContext();
 
 
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ export default function HomePage() {
                 {/* to fix the CSS here. */}
                 {isAuthenticated && (
                     <div className='link-container'>
-                        <div className="home-button-group" onClick={() => handleClick("/myrecipes")}>
+                        <div className="home-button-group" onClick={() => handleClick(`/myrecipes/${userId}`)}>
                             <img className="home-button-image" src={WeeklyPlanner} />
                             <p className="home-button-title" >My <br />Recipes</p>
                         </div>

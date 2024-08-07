@@ -1,18 +1,27 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetOneRecipes } from "../../hooks/useRecipes";
 import { useAuthContext } from "../../contexts/AuthContext";
-
+import { useState, useEffect } from "react";
 import '../../static/CSS/recipe.css';
 import recipesAPI from "../../api/recipes-Api";
 import { nanoid } from 'nanoid'
-
+import MealPlannerService from "../../api/myRecipesService";
 
 export default function RecipeDetails() {
     const navigate = useNavigate();
+    const { userId } = useAuthContext();
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useGetOneRecipes(recipeId);
-    const { userId } = useAuthContext();
     const isOwner = userId === recipe._ownerId;
+    const [currentRecipe, setCurrentRecipe] = useState(null);
+    const [mealAddedToPlanner, setMealAddedToPlanner] = useState(null);
+    useEffect(() => {
+        (async () => {
+            const currentRecipe = await recipesAPI.getOne(recipeId);
+            setCurrentRecipe(currentRecipe);
+            console.log(currentRecipe)
+        })();
+    }, []);
 
     const recipeDeleteHandler = async () => {
         try {
@@ -22,7 +31,14 @@ export default function RecipeDetails() {
         } catch (error) {
             console.log(error.message)
         }
-    }
+    };
+    const handleAdding = () => {
+        MealPlannerService.create(currentRecipe, userId);
+        console.log(userId);
+        console.log(currentRecipe._id);
+        console.log(currentRecipe);
+        setMealAddedToPlanner(<button> Recipe added to Planner</button>)
+    };
 
 
     return (
@@ -39,7 +55,7 @@ export default function RecipeDetails() {
                 Ingredients: {/** To do the CSS here. */}
                 {
                     recipe.ingredients.map((item, index) => (
-                        <p className="ingredient-text" key={nanoid()}>
+                        <p className="ingredient-text" key={recipe._id}>
                             {Object.entries(item).map(([key, value]) => {
                                 return (
                                     <span> <strong> {`${value}`}</strong></span>
@@ -64,7 +80,7 @@ export default function RecipeDetails() {
                 </div>
             )}
             <div className="buttons">
-                <Link className="button">Add Recipe to Meal Plan</Link>
+                <Link onClick={() => handleAdding()} className="button">Add Recipe to Meal Plan</Link>
             </div>
         </div>
     )

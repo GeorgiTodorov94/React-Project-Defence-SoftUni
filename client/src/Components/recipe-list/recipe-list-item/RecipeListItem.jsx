@@ -1,33 +1,20 @@
 import React, { useEffect } from "react";
-import recipesAPI from "../../../api/recipes-Api";
-import useGetAllRecipes, { useGetOneRecipes } from "../../../hooks/useRecipes";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from 'sweetalert';
 import { useAuthContext } from "../../../contexts/AuthContext";
-import { useState } from "react";
-
+import MealPlannerService from "../../../api/myRecipesService";
 
 export default function RecipeListItem({
     recipes,
-    recipe
 }) {
-    // const navigate = useNavigate();
-    // const { recipeId } = useParams()
-    // const { userId } = useAuthContext();
-    // const [user, setUser] = useState({})
-    // const getUser = async () => {
-    //     const currentUser = await requester.get(`http://localhost:3030/users/me/${userId}`);
-    //     setUser(currentUser);
-    // }
-
-
-
-
+    const navigate = useNavigate();
+    const { userId } = useAuthContext();
 
     let listOfRecipes = recipes?.map(recipe => {
 
         const recipeId = recipe._id;
-
+        const currentRecipe = recipe;
+        console.log(currentRecipe)
 
         return (
             <>
@@ -36,6 +23,7 @@ export default function RecipeListItem({
                     <p className="recipe-button-text" >{recipe.name}</p>
                     <img className="recipe-button-image" onClick={() => {
                         {
+                            MealPlannerService.create(currentRecipe, userId);
                             return swal({
                                 title: "Recipe added to meal planner!",
                                 icon: "success",
@@ -55,9 +43,12 @@ export default function RecipeListItem({
 
     return (
         <>
-            <div className="recipe-book-link-container">
-                {listOfRecipes}
-            </div>
+            {listOfRecipes.map(recipe => {
+                return <div className="recipe-book-link-container" key={recipe._id}>
+                    {recipe}
+                </div>
+            })}
+
         </>
     );
 };
