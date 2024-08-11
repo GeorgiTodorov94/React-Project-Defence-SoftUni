@@ -16,6 +16,7 @@ import RecipeList from './Components/recipe-list/RecipeList';
 import Logout from './Components/logout/Logout';
 import MyRecipes from './Components/my-recipes/MyRecipes';
 import RoutGuard from './route-guards/routeGuards';
+import MyRecipeItem from './Components/my-recipes/my-recipe-item/MyRecipeItem';
 
 function App() {
     return (
@@ -34,7 +35,7 @@ function App() {
                                 <MyRecipes />
                             </RoutGuard>)} />
                         <Route path='/recipes/:recipeId/details' element={<RecipeDetails />} />
-                        <Route path='/:userId/:recipeId' element={<RecipeDetails />} />
+                        <Route path='/data/:userId/:recipeId/details' element={<MyRecipeItem />} />
                         <Route path='/recipes/:recipeId/edit' element={<RecipeEdit />} />
                         <Route path='/logout' element={<Logout />} />
                     </Routes>

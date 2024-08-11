@@ -7,9 +7,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import MyRecipeItem from './my-recipe-item/MyRecipeItem';
 import sadMonkey from '../../static/graphics/SadMonkey.png'
+import RecipeListItem from '../recipe-list/recipe-list-item/RecipeListItem';
+import RecipeDetails from '../recipe-details/RecipeDetails';
 
 export default function MyRecipes() {
-    const navigate = useNavigate()
+
+    const navigate = useNavigate();
     const BASE_URL = 'http://localhost:3030/data/recipes';
     const [recipesInPlannerList, setRecipesInPlannerList] = useState([]);
     const [recipeBookList, setRecipeBookList] = useState([]);
@@ -17,33 +20,40 @@ export default function MyRecipes() {
     const [filteredRecipeBookList, setFilteredRecipeBookList] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const { userId } = useAuthContext();
-    const { recipeId } = useParams();
-    console.log(userId)
+    const [userRecipes, setUserRecipes] = useState([]);
+    console.log(userId);
+
     const getUserRecipes = async () => {
-        const recipes = await MealPlannerService.getAll(userId);
-        setRecipesInPlannerList(recipes);
-        loadAllRecipes(BASE_URL);
-    }
+
+        const result = await MealPlannerService.getAll(userId);
+        // console.log(result);
+
+        return setRecipesInPlannerList(result);
+    };
 
     useEffect(() => {
-        getUserRecipes()
-    }, []);
+
+        loadAllRecipes(BASE_URL);
+        getUserRecipes();
+
+    }, [userRecipes]);
+
 
     const loadAllRecipesInPlanner = (url, allRecipes) => {
         fetch(url)
             .then(result => result.json())
             .then(response => {
-                const allRecipesInPlanner = allRecipes
-                    .filter(r => response.some((p) => p.recipeId === r._id));
-                // console.log(allRecipesInPlanner)
-                setPlannerDBList(response);
-                // console.log(response)
+                // setPlannerDBList(response);
+                // console.log(response);
                 setRecipeBookList(allRecipes);
-                // console.log(allRecipes)
+                // console.log(allRecipes);
                 setFilteredRecipeBookList(allRecipes);
+
             });
     };
+
     const loadAllRecipes = url => {
+
         fetch(url)
             .then(result => result.json())
             .then((allRecipes) => {
@@ -55,11 +65,13 @@ export default function MyRecipes() {
         const currentUser = userId;
         const currentRecipe = recipe;
         const handleAdding = async () => {
+
             await MealPlannerService.create(currentRecipe, currentUser);
-            // console.log(currentRecipe)
-            // console.log(currentRecipe._id)
-        }
-        // currentRecipe => setRecipesInPlannerList([...recipesInPlannerList, currentRecipe])
+
+            const recipes = await MealPlannerService.getAll(userId);
+            setRecipesInPlannerList(recipes);
+        };
+
         return (
             <div className="planner-recipe-group" key={recipe._id}>
                 <div className="planner-recipe">
@@ -89,13 +101,23 @@ export default function MyRecipes() {
         setWordEntered("");
         setFilteredRecipeBookList(recipeBookList);
     };
-    // console.log(recipesInPlannerList)
+
+
+
     const displayRecipesInPlannerList = useMemo(() => recipesInPlannerList?.map(recipe => {
-        const recipeId = recipe._id
+        const recipeId = recipe._id;
 
         return (
             <div className="button-group" key={nanoid()}>
-                <img onClick={() => navigate(`/recipes/${recipeId}/details`)} className="button-image" src={recipe.imageUrl} width="100px" />
+                <img onClick={async () => {
+
+                    { recipe => < MyRecipeItem recipeId={recipe._id} recipe={recipe} key={recipe._id} /> }
+
+                    navigate(`/data/${userId}/${recipe._id}/details`);
+
+                }}
+
+                    className="button-image" src={recipe.imageUrl} width="100px" />
                 <p className="button-text">{recipe.name}</p>
                 <img className="planner-button-delete"
                     onClick={() => {
@@ -125,13 +147,14 @@ export default function MyRecipes() {
                                         buttons: false,
                                         className: "swal-delete"
                                     });
-                                }
-                            });;
+                                };
+                            });
                     }}
                     src="https://findicons.com/files/icons/1262/amora/256/delete.png" width="25px" />
             </div>
         )
-    }), [recipesInPlannerList]);
+
+    }), [recipesInPlannerList, <MyRecipeItem />, userRecipes]);
     // console.log(displayRecipesInPlannerList)
 
     return (
@@ -153,13 +176,16 @@ export default function MyRecipes() {
                 <div className="planner-overall">
                     <h1 className="planner-pagetitle">Planner</h1>
                     <div className="planner-link-container">
-                        {displayRecipesInPlannerList.length > 0
-                            ? displayRecipesInPlannerList
-                            : <div className="no-results">
-                                <img src={sadMonkey} width='150px' />
-                                <h1>No results</h1>You have no recipes.<br />
-                            </div>
+
+                        {
+                            displayRecipesInPlannerList.length > 0
+                                ? displayRecipesInPlannerList
+                                : <div className="no-results">
+                                    <img src={sadMonkey} width='150px' />
+                                    <h1>No results</h1>You have no recipes.<br />
+                                </div>
                         }
+
                     </div>
                 </div>
             </div>

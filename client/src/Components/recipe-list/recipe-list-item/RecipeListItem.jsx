@@ -14,7 +14,13 @@ export default function RecipeListItem({
 
         const recipeId = recipe._id;
         const currentRecipe = recipe;
-        console.log(currentRecipe)
+        console.log(currentRecipe);
+
+        const createAndNavigate = async () => {
+
+            await MealPlannerService.create(currentRecipe, userId);
+            navigate(`/myrecipes/${userId}`)
+        }
 
         return (
             <>
@@ -23,15 +29,16 @@ export default function RecipeListItem({
                     <p className="recipe-button-text" >{recipe.name}</p>
                     <img className="recipe-button-image" onClick={() => {
                         {
-                            MealPlannerService.create(currentRecipe, userId);
                             return swal({
                                 title: "Recipe added to meal planner!",
                                 icon: "success",
                                 timer: 1500,
                                 buttons: false,
-                                className: "swal"
+                                className: "swal",
+                                create: createAndNavigate()
                             });
                         }
+
                     }} src="https://icons.iconarchive.com/icons/martz90/circle-addon1/48/text-plus-icon.png" width="25px" />
 
                 </div>

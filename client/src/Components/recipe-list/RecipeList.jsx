@@ -9,7 +9,9 @@ import { useState, useEffect } from 'react';
 
 export default function RecipeList() {
     const [recipes, setRecipes] = useGetAllRecipes();
-    const { isAuthenticated } = useAuthContext()
+
+    const { isAuthenticated } = useAuthContext();
+
     const RecipesApi = [
         {
             name: "recipes",
@@ -25,7 +27,6 @@ export default function RecipeList() {
 
 
     const handleSearch = (e) => setSearchTerm(e.target.value);
-
 
 
     useEffect(() => {
@@ -79,17 +80,22 @@ export default function RecipeList() {
 
         foundItems = [];
         displayedRecipesList?.map(recipe => {
-            if (recipe?.name?.toLowerCase().includes(searchTerm?.toLowerCase()) === true) {
-                // console.log(searchTerm)
-                foundItems.push(recipe)
-                // console.log(foundItems)
-                // console.log(displayedRecipesList)
+            if (searchTerm.length <= 0) {
+                return setSearchTerm('');
             };
 
-            setDisplayedRecipesList(foundItems);
-            document.getElementById('searchTerm').value = "";
-        });
-    };
+            if (recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) === true) {
+                // console.log(searchTerm);
+                foundItems.push(recipe);
+                // console.log(foundItems);
+                // console.log(displayedRecipesList);
+
+
+                setDisplayedRecipesList(foundItems);
+                document.getElementById('searchTerm').value = "";
+            };
+        })
+    };;
 
     // console.log(displayedRecipesList);
 

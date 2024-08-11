@@ -1,6 +1,6 @@
 import { getAccessToken } from "../utils/authUtils";
 
-const baseURL = `http://localhost:3030/data`;
+export const baseURL = `http://localhost:3030/data`;
 
 const accessToken = getAccessToken();
 
@@ -28,7 +28,8 @@ const MealPlannerService = {
             method: recipe.method,
             notes: recipe.notes,
         };
-        return fetch(`${baseURL}/${userId}`, {
+
+        return fetch(`${baseURL}/${userId}/`, {
             method: 'POST',
             body: JSON.stringify(plannerRecipe),
             headers: {

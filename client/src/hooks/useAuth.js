@@ -22,26 +22,18 @@ export const useLogin = () => {
 export const useRegister = () => {
     const { changeAuthState } = useContext(AuthContext);
 
-    const registerHandler = async (email, username, password, rePassword) => {
-
-        if (password !== rePassword) {
-            return setError('Password mismatch!');
-        };
+    const registerHandler = async (email, password) => {
 
         const salt = bcryptjs.genSaltSync(15);
         const hashedPassword = bcryptjs.hashSync(password, salt);
 
         const newUser = {
             email: email,
-            username: username,
             password: hashedPassword,
-            rePassword: hashedPassword,
         };
 
-        if (!newUser.email || !newUser.password || !newUser.username || !newUser.rePassword) {
-            return res.status(400).json({ message: 'Wrong wrong wrong!' });
-        };
-        const { password: _, ...authData } = await register(newUser.email, newUser.username, newUser.password, newUser.rePassword);
+
+        const { password: _, ...authData } = await register(newUser.email, newUser.password);
         console.log(newUser);
         console.log(authData);
         changeAuthState(Object.assign(authData, newUser));

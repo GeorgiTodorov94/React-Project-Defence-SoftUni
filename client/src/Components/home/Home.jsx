@@ -42,16 +42,13 @@ export default function HomePage() {
                     <p className="home-button-title" >Recipe <br />Book</p>
                 </div>
                 {/* to fix the CSS here. */}
-                {isAuthenticated && (
-                    <div className='link-container'>
+                {
+                    isAuthenticated && (
                         <div className="home-button-group" onClick={() => handleClick(`/myrecipes/${userId}`)}>
                             <img className="home-button-image" src={WeeklyPlanner} />
                             <p className="home-button-title" >My <br />Recipes</p>
                         </div>
-
-
-                    </div>
-                )}
+                    )}
             </div>
 
         </>

@@ -29,6 +29,7 @@ export async function requester(method, url, data) {
 
 
     const response = await fetch(url, options);
+
     if (response.status === 204) {
         return;
     };
@@ -36,7 +37,7 @@ export async function requester(method, url, data) {
     const result = await response.json();
 
     if (response.status === 400) {
-        throw result.message
+        throw response.message
     };
 
     if (response.status === 401) {
@@ -45,12 +46,13 @@ export async function requester(method, url, data) {
 
 
     if (!response.ok) {
-        throw result.message;
+        throw response.message;
     };
 
 
     return result;
 }
+
 
 
 export const get = requester.bind(null, 'GET');

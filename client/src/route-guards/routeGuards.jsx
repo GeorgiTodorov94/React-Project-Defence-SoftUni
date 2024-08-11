@@ -6,7 +6,8 @@ export default function RoutGuard({ children }) {
     const { isAuthenticated } = useAuthContext();
     if (!isAuthenticated) {
         return <Navigate to='/register' />
-    }
+    };
+    
     return (
         <>
             {children}

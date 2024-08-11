@@ -5,6 +5,7 @@ export const fetchAllRecipes = async () => {
     const result = await request.get(BASE_URL);
 
     const recipes = Object.values(result);
+    // console.log(recipes)
 
     return recipes;
 }

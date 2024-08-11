@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 import '../../static/CSS/recipe.css';
 import recipesAPI from "../../api/recipes-Api";
 import { nanoid } from 'nanoid'
-import MealPlannerService from "../../api/myRecipesService";
+import MealPlannerService, { baseURL } from "../../api/myRecipesService";
 
 export default function RecipeDetails() {
+    const baseUrl = ``
     const navigate = useNavigate();
     const { userId, isAuthenticated } = useAuthContext();
     const { recipeId } = useParams();
@@ -32,14 +33,16 @@ export default function RecipeDetails() {
             console.log(error.message)
         }
     };
+
     const handleAdding = () => {
         MealPlannerService.create(currentRecipe, userId);
         console.log(userId);
         console.log(currentRecipe._id);
         console.log(currentRecipe);
+        navigate(`/recipes/${recipeId}/details`)
         setMealAddedToPlanner(<button> Recipe added to Planner</button>)
     };
-
+    console.log(recipe)
 
     return (
         <div className="recipe">

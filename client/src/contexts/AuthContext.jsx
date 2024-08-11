@@ -13,15 +13,14 @@ export const AuthContext = createContext({
 
 
 export function AuthContextProvider(props) {
-    // const [authState, setAuthState] = useState({});
     const [authState, setAuthState] = usePersistedState('auth', {});
 
     const changeAuthState = (state) => {
-        setAuthState(state)
+        setAuthState(state);
     };
 
     const logout = () => {
-        setAuthState(null)
+        setAuthState(null);
     }
 
     const contextData = {

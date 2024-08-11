@@ -6,18 +6,17 @@ import { useForm } from "../../hooks/useForm";
 
 
 
-const initialValues = { email: '', username: '', password: '', rePassword: '' };
+const initialValues = { email: '', password: '' };
 export default function RegisterPage() {
     const [error, setError] = useState('');
     const register = useRegister();
     const navigate = useNavigate();
 
-    const registerHandler = async ({ email, username, password, rePassword }) => {
+    const registerHandler = async ({ email, password }) => {
 
 
         try {
-
-            await register(email, username, password, rePassword);
+            await register(email, password);
             alert('You have successfully Registered')
             navigate('/');
         } catch (error) {
@@ -79,19 +78,6 @@ export default function RegisterPage() {
                                     onChange={changeHandler}
                                 />
                             </div>
-                            {/* 
-                            <div className="form-register">
-                                <label htmlFor="username"></label>
-                                <input
-                                    required
-                                    type="username"
-                                    name="username"
-                                    id="username"
-                                    placeholder="Username"
-                                    value={values.username}
-                                    onChange={changeHandler}
-                                />
-                            </div> */}
 
                             <div className="form-register">
                                 <label htmlFor="password"></label>
@@ -105,20 +91,6 @@ export default function RegisterPage() {
                                     onChange={changeHandler}
                                 />
                             </div>
-
-
-                            {/* <div className="form-register">
-                                <label htmlFor="rePassword"></label>
-                                <input
-                                    required
-                                    type="password"
-                                    name="rePassword"
-                                    id="rePassword"
-                                    placeholder="Re-Password"
-                                    value={values.rePassword}
-                                    onChange={changeHandler}
-                                />
-                            </div> */}
 
                             {/* <div className="forgot-password">
                         <Link to={'/'} className="forgot-password-register-form">Forgot Password?</Link>
